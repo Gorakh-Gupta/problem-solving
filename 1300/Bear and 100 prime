@@ -1,0 +1,25 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main(){
+  long long int W=0,sum, n,h,i,j,k,l,y,t,d,x,z,m,p,q=0,r;
+ string s;
+    int b[19]={2,4,3,5,7,9,11,13,17,19,23,25,29,31,37,41,43,47,49};
+  d=0;i=0;j=0;
+  while(q<19){
+     cout<<b[i]<<endl;
+     i++;
+      cin>>s;
+    if(s=="yes"){
+      d++;
+      if(d>1)
+      break;
+     
+    }
+ 
+    q++;
+  }
+  if(d>1)
+  cout<<"composite"<<endl;
+  else cout<<"prime"<<endl;}
+  
