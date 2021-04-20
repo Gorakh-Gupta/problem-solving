@@ -1,0 +1,34 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+#define mod 1000000007
+bool sortf(const pair<int,int> &a,
+
+                   const pair<int,int> &b)
+{
+
+       return a.first > b.first;
+}
+ 
+int  main(){
+ long long  int c,e,f,t,y,z,x,n,i,xx,
+ j,k,l,p,m,h,d;
+// cout<<(4|3);
+ //cin>>t;
+//while(t--){
+  string s,v,g;
+  set<int>ss;
+  getline(cin,s);
+  getline(cin,v);
+ //cin>>s>>v;
+ n=s.size();
+ m=v.size();
+ for(i=0;i+m<=n;i++){
+   g=s.substr(i,m);
+   if(g==v)
+   ss.insert(i);
+ }
+ for(auto it:ss)
+ cout<<it<<" ";}
+ 
+ 
