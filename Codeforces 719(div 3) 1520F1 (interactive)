@@ -1,0 +1,54 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long
+
+const ll N = 1e6 + 50;
+ll a[N];
+bool prime[N];
+void seive()
+{
+    for (int i = 2; i <= N; i++)
+        prime[i] = 1;
+    for (int i = 2; i <= N; i++)
+        for (int j = 2; j * i <= N; j++)
+            prime[j * i] = 0;
+            
+     for(ll i=2;i<=N;i++)
+   a[i]=a[i-1]+prime[i];
+}
+ 
+bool sortf(const pair<int,int> &a,
+                   const pair<int
+                   ,int> &b)
+{
+ 
+       return a.second < b.second;
+}
+
+ll que(ll n) {
+  cout << "? " << 1 << " " << n + 1 << endl;
+  ll ans;
+  cin >> ans;
+  return ans;
+}
+
+int main(){
+ ll n, t;
+  cin >> n >> t;
+  ll k;
+  cin >> k;
+  ll l = 0, r = n - 1;
+  while (l < r) {
+    ll mid = (l + r) / 2;
+    ll ans = que(mid);
+    ll cnt = (mid + 1 - ans);
+    if (cnt < k) {
+      l = mid + 1;
+    }
+    else {
+      r = mid;
+    }
+  }
+  cout << "! " << l + 1 << endl;
+ }
+   
