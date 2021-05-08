@@ -1,0 +1,77 @@
+#include <iostream>
+using namespace std;
+#define ll long long 
+//Compiler version g++ 6.3.0
+
+const ll N = 1e6 + 50;
+ll a[N];
+bool prime[N];
+void seive()
+{
+    for (int i = 2; i <= N; i++)
+        prime[i] = 1;
+    for (int i = 2; i <= N; i++)
+        for (int j = 2; j * i <= N; j++)
+            prime[j * i] = 0;
+            
+     for(ll i=2;i<=N;i++)
+   a[i]=a[i-1]+prime[i];
+}
+ 
+bool sortf(const pair<int,int> &a,
+                   const pair<int
+                   ,int> &b)
+{
+ 
+       return a.second < b.second;
+}
+
+ll qqq(ll z) {
+  for (ll i = 0; i < z - 1; i += 2) {
+    ll r;
+    cout << "?" << " " << 1 << " " << i + 1 << " " << i + 2 << " " << z - 1 << endl;
+    cin >> r;
+    if (r == z)
+      return i + 1;
+    if (r == z - 1) {
+      cout << "?" << " " << 1 << " "  << i + 2 << " " << i + 1 << " " << z - 1 << endl;
+      cin >> r;
+      if (r== z)
+        return i;
+    }
+  }
+  return z - 1;
+}
+
+//*****†*
+  
+int main(){
+  ios::sync_with_stdio(false);
+    cin.tie(0), cout.tie(0);
+    
+  ll tn;
+  cin>>tn;
+  while(tn--){
+  ll n;
+  cin >> n;
+  ll a[n];
+  ll y = qqq(n);
+  
+  for(ll i=0;i<n;i++) {
+    if (i == y)
+      continue;
+    cout << "?" << " " << 2 << " " << i + 1 << " " << y + 1 << " " << 1 << endl;
+    ll z;
+    cin >> z;
+    a[i] = z;
+  }
+  cout << "! ";
+
+  for (ll i = 0; i < n; i++) {
+    if (i == y)
+      cout << n << " ";
+    else
+      cout << a[i] << " ";
+  }
+  cout<<endl;
+}}
