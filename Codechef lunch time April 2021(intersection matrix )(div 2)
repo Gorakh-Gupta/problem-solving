@@ -1,0 +1,192 @@
+#include <bits/stdc++.h>
+using namespace std;
+#pragma GCC target ("avx2")
+#pragma GCC optimization ("O3")
+#pragma GCC optimization ("unroll-loops")
+//#pragma GCC optimize("Ofast")
+// #pragma GCC optimize "trapv"
+
+#define ll long long
+#define lld long double
+
+ll ans=0;
+int dp[201][100001] ;
+int H,mat[201][201],mod=1e9+7,sm,lg;
+vector <int> r,c,v,c1;
+int mp[100001];
+
+void f4(int j)
+{
+    if(j==lg+1)
+    {
+        int sum=0;
+        for(int k=0;k<c1.size();k++)
+        sum+=v[c1[k]-1];
+        
+        if(sum==H)
+        ans++;
+        else if(H-sum>0)
+        ans+=mp[H-sum];
+        
+        ans%=mod;
+        
+        return ;
+    }
+    f4(j+1);
+    c1.push_back(j);
+    f4(j+1);
+    c1.pop_back();
+}
+
+void f2(int j)
+{
+    if(j==lg/2)
+    {
+        int sum=0;
+        for(int k=0;k<c.size();k++)
+        sum+=v[c[k]-1];
+        
+        if(sum<=H)
+        mp[sum]++;
+        
+        return;
+    }
+    f2(j+1);
+    c.push_back(j);
+    f2(j+1);
+    c.pop_back();
+}
+
+ll fun(int i, int k)
+{
+    if(i==v.size())
+    {
+        if(k==0)
+        return 1;
+        
+        return 0;
+    }
+    
+    if(dp[i][k]!=-1)
+    return dp[i][k];
+
+    ll res=0;
+
+    if(v[i]<=k)
+    res=fun(i+1,k-v[i]);
+
+    res+=fun(i+1,k);
+    res%=mod;
+
+    return dp[i][k]=res;
+}
+
+void f3()
+{
+    for(int i=1;i<=lg;i++)
+    v.push_back(mat[r[0]][i]);
+    
+    for(int i=1;i<r.size();i++)
+    {
+        int f=r[i];
+        for(int i=1;i<=lg;i++)
+        v[i-1]+=mat[f][i];
+    }
+    
+    if(pow(2,lg/2)*lg/2<=H*lg)
+    {
+        f2(1);
+        f4(lg/2);
+    }
+    else
+    {
+        for(int i=0;i<=v.size();i++)
+        for(int j=0;j<=H;j++)
+        dp[i][j]=-1;
+    
+        int val = fun(0, H);
+        ans+=val;
+        ans%=mod;
+    }
+    v.clear();
+    memset(mp,0,sizeof(mp));
+    
+    // for(int i=0;i<r.size();i++)
+    // cout<<r[i]<<" ";
+    // cout<<"\n";
+    // for(int j=0;j<v.size();j++)
+    // cout<<v[j]<<" ";
+    // cout<<"\n";
+    // cout<<val<<"\n";
+}
+
+void f1(int i)
+{
+    if(i==sm+1)
+    {
+        if(r.size()==0)
+        return;
+        
+        
+        f3();
+        
+        return;
+    }
+    f1(i+1);
+    r.push_back(i);
+    f1(i+1);
+    r.pop_back();
+}
+
+
+int main() {
+	// your code goes here
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    ll T;
+    cin>>T;
+    for(int t=1;t<=T;t++)
+    {
+        int n,m;
+        cin>>n>>m>>H;
+        
+        r.clear();
+        c.clear();
+        v.clear();
+        c1.clear();
+        ans=0;
+
+        ll arr[n+1][m+1];
+
+        for(int i=1;i<=n;i++)
+            for(int j=1;j<=m;j++)
+            cin>>arr[i][j];
+
+        if(n<m)
+        {
+            for(int i=1;i<=n;i++)
+            for(int j=1;j<=m;j++)
+            mat[i][j]=arr[i][j];
+        }
+        else
+        {
+            for(int i=1;i<=m;i++)
+            for(int j=1;j<=n;j++)
+            mat[i][j]=arr[j][i];
+        }
+        
+        sm=min(n,m);
+        lg=max(n,m);
+        
+        // for(int i=1;i<=sm;i++)
+        // for(int j=1;j<=lg;j++)
+        // cout<<mat[i][j]<<" ";
+        
+        f1(1);
+
+        cout<<ans<<"\n";
+
+        
+    }
+}
+
