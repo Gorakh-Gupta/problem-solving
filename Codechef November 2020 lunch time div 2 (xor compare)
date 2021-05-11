@@ -1,0 +1,48 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long
+#define ld long double
+
+int  main(){
+  ios::sync_with_stdio(false);
+    cin.tie(0), cout.tie(0);
+ ll r,e,t,x,y,z,d,n,i,
+ j,k,l,m,h=0,u,p,cnt,mod;
+ cin>>t;
+while(t--){
+ cin>>x>>y>>n;
+  d=1;
+  h=0;
+ // bool are_same true;
+  n++;
+  for(j=29;j>=0;--j){
+    if(d==1){
+        if((x&(1<<j)) != (y&(1<<j))){
+          for(k=29;k>=0;--k){
+           if(j>k){
+             if(n&(1<<k))
+             {
+               if((n&(1<<j))==(x&(1<<j)))
+               h+=(1<<k);
+             }
+           }
+           else if(j==k){
+             if(n&(1<<k)){
+               if((x&(1<<j))==0)
+               h+=(1<<k);
+             }
+           }
+           else{
+             if(n&(1<<k))
+             h+=(1<<(k-1));
+           }
+        }
+      }
+      
+    }
+    if((x&(1<<j))!=(y&(1<<j)))
+    d=0;
+  //  are_same false;
+  }
+  cout<<h<<endl;}}
+  
