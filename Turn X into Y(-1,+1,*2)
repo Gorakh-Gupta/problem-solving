@@ -1,0 +1,28 @@
+#include <iostream>
+#include <iomanip>
+#include <bits/stdc++.h>
+#include <algorithm>
+#include <map>
+using namespace std;
+
+map<long long , long long> m;
+
+long long cal(long long x,long long y){
+  long long num;
+  if(m.find(y) != m.end()){return m.at(y); }
+  if(y <= x){num = x-y;}
+  else if (y%2==0){ num = min(y-x,cal(x,y/2)+1);}
+  else {num = min(y-x,min(cal(x,(y+1)/2),cal(x,(y-1)/2))+2); }
+  //cout << x << " " << y << " " << num << endl;
+  m.insert(make_pair(y, num));
+  return num;
+}
+
+int main (){
+  long long X,Y;
+  cin >> X >> Y;
+  long long ans = cal(X,Y);
+  cout << ans << endl;
+
+  return 0;
+}
