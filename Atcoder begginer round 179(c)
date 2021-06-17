@@ -1,0 +1,24 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define ll long long
+//int xx[10]={2,3,5,7,11,13,17,19,23,29};
+//const ll Mod =1e18;
+const ll N=1e6+5;
+vector<ll>dp(N,1);
+void precal(){
+  for(int i=2;i<=N/2;i++){
+    for (int j=i;j<=N;j+=i)
+     if(j%i==0){
+       dp[j]++;
+     }
+  }}
+  
+int main(){
+ // precal();
+  ll x,i,j,k,z,w,n,m,d,h,p,r,l,y,t;
+  cin >> n;
+  d=0,h=0;
+  for(i=1;i<n;i++)
+    d+=(n-1)/i;
+    cout<<d;
+    }
