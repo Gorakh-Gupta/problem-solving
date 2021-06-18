@@ -1,0 +1,15 @@
+#include<bits/stdc++.h>
+using namespace std;
+const int mod=1000000007;
+
+int main(){
+    int s,a[2010];
+    cin>>s;
+    a[0]=1,a[1]=a[2]=0;
+    for(int i=3;i<=s;i++){
+	a[i]=(a[i-1]+a[i-3])%mod;
+    }
+    cout<<a[s]<<endl;
+}
+
+
