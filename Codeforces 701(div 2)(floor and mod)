@@ -1,0 +1,59 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define pb push_back
+//int xx[12]={0,2,3,5,7,11,13,17,19,23,29,31}
+//vector<int>v[maxn];
+#define ll long long
+#define ld long double
+const ll mod =1e7+7;
+const ll Mod = 9982828;
+const ll N=1e6+7;
+/*
+ll a[N];
+bool prime[N];
+
+void precal(){
+  for(int i=0;i<N;i++){
+    prime[i]=true;
+  }
+  prime[0]=false;
+  prime[1]=false;
+ 
+  for(int p=2;p*p<N;p++){
+    if(prime[p]){
+      for(int i=p*p;i<N;i+=p){
+        prime[i]=false;
+      }
+    }
+  }
+
+  a[0]=0;
+  a[1]=0;
+  a[2]=1;
+  for(int i=3;i<=N;i++){
+    if(prime[i]){
+      a[i]=a[i-1]+1;
+     //cout<<a[i]<<endl;
+    }
+    else a[i]=a[i-1];
+  }
+}
+*/
+
+int main(){
+  ios::sync_with_stdio(false);
+   cin.tie(0);
+  
+   int t;
+ cin>>t;
+ while(t--){
+   ll x,y,p,i;
+   ll d=0;
+   cin>>x>>y;
+   
+   for(i=1;i*i<=x;i++){
+     d+=max(0ll,min(y,x/i-1)-i);
+     }
+    
+   cout<<d  <<endl;
+ }}
