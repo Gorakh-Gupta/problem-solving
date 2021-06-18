@@ -1,0 +1,77 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define pb push_back
+//int xx[12]={0,2,3,5,7,11,13,17,19,23,29,31}
+//vector<int>v[maxn];
+#define ll long long
+#define ld long double
+const ll mod =1e9+7;
+const ll N=1e6+7;
+bool prime[N];
+int ilen[2001];
+int ilem[2001];
+
+vector<ll> dp[2001];
+
+ll vis[2001]={0}, ans = 0;
+
+void dfs(ll n) {
+  vis[n] = 1;
+  ilen[ans]++;
+  for(int i=0;i<dp[n].size();i++) {
+    ilem[ans]++;
+    if (!vis[dp[n][i]])
+      dfs(dp[n][i]);
+  }}
+
+
+int main() {
+  ll n, k, d,m;
+  cin >> n >> m >> k;
+  ll v[k];
+  set<ll,greater<int>>vv;
+  vector<ll>vvv;
+  for(int i=0;i<k;i++){
+    cin>>v[i];
+  }
+  
+  for(int i=0;i<m;i++) {
+    ll a, b;
+    cin >> a >> b;
+    dp[a].pb(b);
+    dp[b].pb(a);
+  }
+ans=0;
+  for(int i=0;i<k;i++){
+    dfs(v[i]);
+    ans++;
+   // vv.insert(ans);
+  }
+  for (int i=1;i<=n;i++){
+    if(!vis[i]){
+      dfs(i);
+      ans++;
+    }
+  }
+  int l=0;
+    for(int i=1;i<k;i++)
+    {
+        if(ilen[i]>ilen[l])
+        l=i;
+    }
+    
+    int w=0;
+    for(int i=0;i<ans;i++)
+    {
+        ilem[i]/=2;
+        w+=ilen[i]*(ilen[i]-1)/2 - ilem[i];
+    }
+    
+    for(int i=k;i<ans;i++)
+    {
+        w+=ilen[l]*ilen[i];
+        for(int j=i+1;j<ans;j++)
+        w+=ilen[i]*ilen[j];
+    }
+    cout<<w;
+      }
