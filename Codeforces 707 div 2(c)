@@ -1,0 +1,46 @@
+// find four index I,j,k,l such that ai+ak=aj+al.
+
+#include <bits/stdc++.h>
+
+using namespace std;
+typedef long long ll;
+
+const ll DIM = 1000007, maxN = 507, INF = 10000000000007, MOD = 1000000007;
+
+ll t, n, m, k, a[DIM], b, d[DIM], p[DIM], c[2 * DIM], x1, x2, i, j, mn = INF;
+bool flag, win;
+vector<string> ans;
+pair<ll,ll> s[5000007];
+bool was[5000007];
+
+void solve() {
+	cin >> n;
+	for (int i = 1; i <= n; ++i)
+		cin >> a[i];
+	for (int i = 1; i <= n; ++i) {
+		for (int j = i + 1; j <= n; ++j) {
+			if (!was[a[i] + a[j]]) {
+				was[a[i] + a[j]] = true;
+				s[a[i] + a[j]] = { i, j };
+			}
+			else {
+				if (i != s[a[i] + a[j]].first && j != s[a[i] + a[j]].first && i != s[a[i] + a[j]].second && j != s[a[i] + a[j]].second) {
+					cout << "YES\n" << i << " " << j << " " << s[a[i] + a[j]].first << " " << s[a[i] + a[j]].second << '\n';
+					return;
+				}
+			}
+ 		}
+	}
+	cout << "NO\n";
+}
+
+int main() {
+	cin.tie(0);
+	cout.tie(0);
+	ios_base::sync_with_stdio(false);
+
+	t = 1;//cin >> t;
+	while(t--)
+		solve();
+	return 0;
+}
