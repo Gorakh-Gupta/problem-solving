@@ -1,0 +1,90 @@
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return true; } return false; }
+template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return true; } return false; }
+#define all(x) (x).begin(),(x).end()
+#define fi first
+#define se second
+#define mp make_pair
+#define si(x) int(x.size())
+const int mod=1000000007,MAX=200005,INF=1<<30;
+
+vector<vector<int>> ans;
+void f(int i,int j,int k){
+    ans.push_back({i+1,j+1,k+1});
+}
+
+void output(){
+    cout<<si(ans)<<"\n";
+    for(auto x:ans) cout<<x[0]<<" "<<x[1]<<" "<<x[2]<<"\n";
+}
+
+int main(){
+    
+    std::ifstream in("text.txt");
+    std::cin.rdbuf(in.rdbuf());
+    cin.tie(0);
+    ios::sync_with_stdio(false);
+    
+    int Q;cin>>Q;
+    while(Q--){
+        ans.clear();
+        int N;cin>>N;
+        vector<int> A(N);
+        for(int i=0;i<N;i++) cin>>A[i];
+        if(N==1){
+            cout<<0<<"\n";
+            continue;
+        }
+        if(N==2){
+            if(A[0]!=A[1]) cout<<0<<"\n";
+            else cout<<-1<<"\n";
+            continue;
+        }
+        if(N==3){
+            if(A[0]+A[1]+A[2]==0){
+                cout<<-1<<"\n";
+                continue;
+            }
+            if(A[0]==A[2]){
+                if(A[0]==A[1]) f(0,2,1);
+                output();
+                continue;
+            }
+            if(A[1]==0){
+                if(A[0]) f(0,1,2);
+                else f(2,1,0);
+                output();
+                continue;
+            }else{
+                cout<<-1<<"\n";
+                continue;
+            }
+        }
+        ll sum=0;
+        for(int i=0;i<N;i++) sum+=A[i];
+        if(sum==0){
+            cout<<-1<<"\n";
+            continue;
+        }
+        int ng=-1;
+        for(int i=0;i+2<N;i++){
+            if(A[i]!=A[i+2]) ng=i;
+        }
+        if(ng==-1){
+            if(A[0]==A[1]){
+                for(int i=1;i<N;i+=2) f(0,2,i);
+            }
+            output();
+            continue;
+        }
+        
+        int s=(ng&1)^1;
+        for(int i=s;i<N;i+=2) f(ng,ng+2,i);
+        for(int i=s^1;i<N;i+=2) f(s,s+2,i);
+        
+        output();
+        continue;
+    }
+}
