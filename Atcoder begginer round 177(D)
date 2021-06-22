@@ -1,0 +1,79 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+#define ll long long
+
+#define pb push_back
+
+vector<ll> dp[200005];
+
+map<ll,ll>mp;
+
+ll vis[200005]={0}, ans = 0;
+
+void dfs(ll n) {
+
+  vis[n] = 1;
+
+  ans++;
+
+  for(int i=0;i<dp[n].size();i++) {
+
+    if (!vis[dp[n][i]])
+
+      dfs(dp[n][i]);
+
+  }}
+
+  
+
+  #include<bits/stdc++.h>
+
+using namespace std;
+
+#define ll long long
+
+const ll md=1e9+7;
+
+#define pb push_back
+
+  int main(){
+
+ // precal();
+
+  ll x,i,j,k,z,t,w,n,m,d,p,h,r,l,y;
+
+   string s;
+
+   cin>>n>>m;
+
+   for(i=0;i<m;i++){
+
+     cin>>x>>y;
+
+     dp[x].pb(y);
+
+     dp[y].pb(x);
+
+   }
+
+   d=0;
+
+   for(i=1;i<=n;i++){
+
+     if(!vis[i]){
+
+       ans=0;
+
+       dfs(i);
+
+       d=max(d,ans);
+
+     }
+
+   }
+
+   cout<<d;}
+
+   
