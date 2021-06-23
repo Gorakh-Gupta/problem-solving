@@ -1,0 +1,46 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define ll long long
+#define pb push_back
+
+int main() {
+  ios_base::sync_with_stdio(0); 
+  cin.tie(0);
+ 
+    ll x,i,j,k,z,w,m,n,t,d,p,h,r,l,y;
+    cin>>n>>m>>t;
+    map<ll,ll>mp,mpx;
+    d=0,h=0;
+    set<pair<ll,ll>>s;
+    for(i=0;i<t;i++) {
+      cin>>x>>y;
+      s.insert({x,y});
+      mp[x]++;
+      mpx[y]++;
+      d=max(d,mp[x]);
+      h=max(h,mpx[y]);}
+      x=0,y=0;
+      vector<ll>mpp,mpxx;
+      for(auto [a,b]:mp){
+        if(b==d)
+        mpp.pb(a);
+      }
+      for(auto [a, b]:mpx){
+        if(b==h)
+        mpxx.pb(a);
+      }
+      p=1;
+      for (auto i:mpp)
+      {
+        for(auto j:mpxx)
+        {
+          if(s.count({i,j})==0)
+          { p=0;
+            cout<<h+d;
+            break;
+          }
+        }
+        if(p==0) break;
+      }
+      if(p==1) cout<<h+d-1;}
+      
