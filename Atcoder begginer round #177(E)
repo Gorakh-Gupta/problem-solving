@@ -1,0 +1,137 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+#define ll long long
+
+const ll md=1e9+7;
+
+#define pb push_back
+
+#define max 1000
+
+vector<bool>flag(max+10,true);
+
+vector<ll>prime;
+
+void ppt(){
+
+  for(int i=2;i<=max;i++){
+
+    if(flag[i])
+
+      prime.pb(i);
+
+      for (int j=i*i;j<=max;j+=i)
+
+        flag[i]=false;
+
+      }
+
+    }
+
+  
+
+  
+
+/*
+
+struct bs {
+
+    bool operator() (const pair<int,int> & a , const pair<int,int> & b) const {
+
+        if(a.first > b.first)
+
+            return true;
+
+        else if (a.first == b.first) {
+
+            if (a.second < b.second)
+
+                return true;
+
+            else
+
+                return false;
+
+        } else
+
+            return false;
+
+    }
+
+};
+
+ */
+
+  
+
+int main() {
+
+  ios_base::sync_with_stdio(0); 
+
+  cin.tie(0);
+
+ 
+
+  ppt();
+
+    ll x,i,j,k,z,w,m,n,t,d,p,h,r,l,y;
+
+    cin>>n;
+
+    vector<ll>a(n);
+
+    
+
+    for(i=0;i<n;i++)
+
+    cin>>a[i];
+
+    
+
+    vector<ll>cnt(max*max+1,0);
+
+    
+
+    for(auto x:a){
+
+      for(auto p:prime){
+
+        if(x==1)
+
+        break;
+
+        bool t=false;
+
+        while(x%p == 0) {x /= p; t = true;}
+
+            if(t) ++cnt[p];
+
+        }
+
+        if(x != 1) ++cnt[x];
+
+    }
+
+    
+
+    bool not_coprime = false;
+
+    bool pairwise = true;
+
+    for(auto c: cnt) {
+
+        if(c > 1) pairwise = false;
+
+        if(c == n) {not_coprime = true; break;}
+
+    }
+
+    if(pairwise) puts("pairwise coprime");
+
+    else if(not_coprime) puts("not coprime" );
+
+    else puts("setwise coprime");
+
+    }
