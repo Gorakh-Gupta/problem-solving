@@ -1,0 +1,40 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define ll long long
+#define pb push_back
+
+int main() {
+  /*
+  ios_base::sync_with_stdio(0); 
+  cin.tie(0);
+   */
+    ll x,i,j,k,z,w,m,n,t,d,p,h,r,l,y;
+    string s;
+    cin>>n>>s;
+    d=0;
+    l=0,r=n-1;
+   // cout<<s;
+    while (l<r){
+      //cout<<l<<r;
+     // cout<<s[l]<<" "<<s[r];
+      
+      if(s[l]=='R'&&s[r]=='W'){
+        l++;r--;
+      }
+      else if(s[l]=='W'&&s[r]=='R')
+      {
+        s[l]='R';
+        s[r]='W';
+        l++;r--;
+        d++;
+      }
+      else if(s[l]=='R'&&s[r]=='R'){
+        l++;
+      }
+      
+      else if(s[l]=='W'&&s[r]=='W'){
+        r--;
+      }
+    }
+   // cout<<s;
+    cout<<d;}
