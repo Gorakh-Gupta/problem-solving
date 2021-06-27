@@ -1,0 +1,19 @@
+#include<cstdio>
+
+int n,val[10100000],fa[10100000];
+int main()
+{
+	scanf("%d",&n);
+	for(int i=1;i<=n;i++)val[i]=i,fa[i]=1;
+	for(int p=2;p<=n;p++)
+	for(int x=p;x<=n;x+=p)
+	{
+		int cnt=0;
+		for(;val[x]%p==0;cnt++)val[x]/=p;
+		fa[x]*=++cnt;
+	}
+	long long ans=0;
+	for(long long i=1;i<=n;i++)ans+=i*fa[i];
+	printf("%lld\n",ans);
+	return 0;
+}
