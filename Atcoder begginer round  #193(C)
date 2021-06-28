@@ -1,0 +1,93 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+#define ll long long 
+
+#define pb push_back
+
+#define pf push_front
+
+#define ppf pop_front
+
+/*
+
+const ll N = 1e10+ 50;
+
+ll a[N+5]={0};
+
+int prime[N];
+
+void seive()
+
+{
+
+    for (ll i = 2; i*i<= N; i++)
+
+        prime[i] = 1;
+
+    for (ll i = 2; i*i <= N; i++)
+
+    { ll k=i*i;
+
+        for(ll j = k; j <= N; j+=k){
+
+            prime[j] = 0;
+
+       }}
+
+            a[1]=1;
+
+            a[2]=2;
+
+            a[3]=3;
+
+     for(ll i=4;i<=N;i++)
+
+   a[i]=a[i-1]+prime[i];
+
+}
+
+//prefix sum 
+
+*/
+
+int main (){
+
+ // seive();
+
+ios_base::sync_with_stdio(false); 
+
+ cin.tie(NULL);
+
+ 
+
+ cout<<fixed<<setprecision(18);
+
+ 
+
+ ll n,i,j,k,l,r,t,x,y,d,p,h,m,w,u;
+
+  unordered_set<ll>s;
+
+  cin>>n;
+
+  for (i=2;i*i<=n;i++){
+
+    x=i*i;
+
+    while(x<=n){
+
+      s.insert(x);
+
+      x*=i;
+
+    }
+
+  }cout<<n-s.size();}
+
+  
+
+  
+
+  
