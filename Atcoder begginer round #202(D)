@@ -1,0 +1,43 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main() {
+  int t;
+  cin>>t;
+  while(t--){
+    int A, B;
+    long long K;
+   
+    cin >> A >> B >> K;
+    vector<std::vector<long long>> dp(A + 1, std::vector<long long>(B + 1));
+    dp[0][0] = 1;
+    for (int i = 0; i <= A; ++i) {
+        for (int j = 0; j <= B; ++j) {
+            if (i > 0) {
+                dp[i][j] += dp[i - 1][j];
+            }
+            if (j > 0) {
+                dp[i][j] += dp[i][j - 1];
+            }
+        }
+    }
+    //A-=2;
+    while (A > 0 and B > 0) {
+        if (K <= dp[A - 1][B]) {
+            cout << 'a';
+            A -= 1;
+        }
+        else {
+            K -= dp[A - 1][B];
+            cout << 'b';
+            B -= 1;
+        }
+    }
+   // cout<<A;
+    string s(A, 'a');
+    cout<<s;
+   string g(B, 'b');
+   cout<<g;
+    cout << '\n';
+    }
+}
