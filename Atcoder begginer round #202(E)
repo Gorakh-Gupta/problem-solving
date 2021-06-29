@@ -1,0 +1,40 @@
+#include<bits/stdc++.h>
+using namespace std;
+const int N=2e5+7;
+vector<int> children[N],v[N];
+vector<int> in(N), out(N), depth(N);
+int timer=0;
+
+
+//Calculate in and out time of each node 
+
+void dfs( int u) {
+    in[u] = timer++;
+    v[depth[u]].push_back(in[u]);
+    for (auto it: children[u]) {
+        depth[it] = depth[u] + 1;
+        dfs(it);
+    }
+    out[u] = timer++;
+}
+
+int main() {
+    int n;
+    cin >> n;
+    for (int i = 1; i < n; ++i) {
+        int p;
+        cin >> p;
+        children[p - 1].push_back(i);
+    }
+    dfs(0);
+    int q;
+    cin >> q;
+    while (q--) {
+        int u, d;
+        cin >> u >> d;
+        u -= 1;
+       cout<<lower_bound(v[d].begin(),v[d].end(), out[u])
+        - lower_bound(v[d].begin(), v[d].end(), in[u]);
+    cout<<endl;}
+    return 0;
+}
