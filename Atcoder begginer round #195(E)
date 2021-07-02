@@ -1,0 +1,40 @@
+#include<iostream>
+
+#include<algorithm>
+
+#include<cstring>
+
+using namespace std;
+
+const int N = 2e5 + 10;
+
+int n, f[N][7];
+
+char s[N], x[N];
+
+int main(){
+
+    cin>>n>>s>>x;
+
+    f[n][0]=1;
+
+    for(int i=n-1;i>=0;i--) {
+
+        for(int j=0;j<7;j++) {
+
+            int a=f[i+1][(j*3+s[i]-'0')%7],b=f[i+1][j*3%7];
+
+            if(x[i]=='T') 
+              f[i][j]=a|b;
+
+            else f[i][j]=a&b;
+
+        }
+
+    }
+
+    cout<<(f[0][0]?"Takahashi":"Aoki")<<'\n';
+
+    return 0;
+
+}
