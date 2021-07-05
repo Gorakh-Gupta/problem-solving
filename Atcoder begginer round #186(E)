@@ -1,0 +1,37 @@
+#include <bits/stdc++.h>
+using namespace std;
+long long exgcd(long long a, long long b, long long&x, long long& y)
+{
+  if (b == 0)
+  {
+    x = 1, y = 0;
+    return a;
+  }
+  long long d = exgcd(b, a % b, y, x);
+  y = y - a / b * x;
+  return a;
+}
+void work()
+{
+  long long n, s, k; cin >> n >> s >> k;
+  long long d = __gcd(n, __gcd(s, k));
+  n /= d; s /= d; k /= d;
+  long long x, y;
+  if (__gcd(k, n) == 1)
+  {
+    long long ans = exgcd(k, n, x, y);
+    x = (n + x % n) % n;
+    ans = n - x * s % n;
+    cout << ans << endl;
+  }
+  else
+  {
+    cout << "-1" << endl;
+  }
+}
+int main()
+{
+  int T; cin >> T;
+  while (T -- ) work();
+  return 0;
+}
