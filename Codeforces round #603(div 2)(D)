@@ -1,0 +1,52 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define pb push_back
+#define ll long long
+// xx[11]={2,3,5,7,11,13,17,19,23,29,31};
+const ll mod =1e9+7;
+//priority_queue<ll,vector<ll>,greater<ll>>q;
+const ll N=2e5+200;
+  vector<ll> v[N];
+vector<ll>vis(N,0),par(100005);
+vector<ll> www(100005);
+int ans=0;
+
+void dfs(ll u){
+  vis[u]=1;
+  for(auto x:v[u]){
+    if(!vis[x])
+    dfs(x);
+  }
+}
+
+
+int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    
+    ll n,t,d,x,y,u,p,w,h,i,m,j,k,l;
+    
+    //t=1;
+    //while(t--){
+      cin>>n;
+      string s;
+      for(i=0;i<n;i++)
+      {
+        cin>>s;
+        for(auto c:s)
+        {
+          v[i].pb(n+c-'a');
+          v[n+c-'a'].pb(i);
+        }
+      }
+      
+      for(i=n;i<n+26;i++){
+        if(!vis[i]&&v[i].size()){
+          dfs(i);
+          ans++;
+        }
+      }
+      cout<<ans;
+      
+      
+      }
