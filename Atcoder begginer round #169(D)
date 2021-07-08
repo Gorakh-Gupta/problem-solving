@@ -1,0 +1,58 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define pb push_back
+#define ll long long
+// xx[11]={2,3,5,7,11,13,17,19,23,29,31};
+const ll mod =1e9+7;
+//priority_queue<ll,vector<ll>,greater<ll>>q;
+const ll N=1e6+7;
+/*
+bool prime[N];
+void seive()
+{
+    for (int i = 2; i <= N; i++)
+        prime[i] = 1;
+    for (int i = 2; i <= N; i++)
+        for (int j = 2; j * i <= N; j++)
+            prime[j * i] = 0;
+ }   
+ */
+  int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+   // seive ();
+  
+    ll n,t,d,x,y,u,p,w,i,m,h,j,k,l;
+    //int a[5];
+   
+    string s;
+    cin>>n;
+    
+    vector<ll>b;
+    h=0;
+    map<ll,ll>mp;
+    for(i=2;i*i<=n;i++) {
+      if(n%i==0)
+      {
+       
+        while(n%i==0)
+        {
+          n/=i;
+          mp[i]++;
+        }
+       
+      }
+    }if(n>1)
+   mp[n]++;
+    //cout<<h;
+    
+    for(auto xx:mp){
+      p=0;j=1;l=0;
+      while(xx.second>p)
+      { l++;
+        p=p+j;
+        j++;
+      }
+      if(p==xx.second)h+=l;
+      else h+=(l-1);
+    }cout<<h;}
