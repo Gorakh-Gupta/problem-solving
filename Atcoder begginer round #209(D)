@@ -1,0 +1,52 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define pb push_back
+#define ll long long
+int main() {
+  ios_base::sync_with_stdio(false); 
+ cin.tie(NULL);
+
+    int N,t; 
+    cin >> N >> t;
+    
+    vector<vector<ll>> edge(N), weight(N);
+    for(int i=1; i<N; i++){
+        ll u,v,w; 
+        cin >> u >> v ;
+        edge[--u].push_back(--v);
+        edge[v].push_back(u);
+       // weight[u].push_back(w);
+       // weight[v].push_back(w);
+    }
+    
+   queue<int> que;
+   vector<int> dis(N,-1);
+    que.push(0);
+    dis[0] = 0;
+
+ 
+    while(!que.empty()){
+       int now = que.front();
+        que.pop();
+        for(auto it:edge[now]){
+          
+           /// ll sum = dist[now]^weight[now][i];
+            if(dis[it] == -1){
+                dis[it] = dis[now]+1;
+                que.push(it);
+            }
+        }}
+        
+        while(t--){
+      int u,v;
+    cin>>u>>v;
+   --u;--v;
+   if(dis[u]%2==dis[v]%2)
+        
+    cout<<"Town"<<endl;
+    else cout<<"Road"<<endl;
+    }}
+    
+    
+    
+    
