@@ -1,0 +1,41 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+using ll = long long;
+
+const int MOD_7 = 1e9 + 7;
+
+const int INF = 1e9 + 1001010;
+
+const double PI = 3.14159265358979;
+
+
+
+double ToRadian(double degree){
+
+    return degree*PI / 180;
+
+}
+
+int main(){
+
+    double a, b, h, m;
+
+    cin >> a >> b >> h >> m;
+
+    double degH = 30*h + 0.5*m;
+
+    double degM = 6*m;
+
+    double diff = abs(degH - degM);
+
+    diff = ToRadian(diff);
+
+    double ans = sqrt(a*a + b*b - 2*a*b*cos(diff));
+
+    cout << setprecision(15) << ans << endl;
+
+    return 0;
+
+}
