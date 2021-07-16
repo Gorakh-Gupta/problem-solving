@@ -1,0 +1,35 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define ll long long
+#define pp pair<ll,ll>
+#define pb push_back
+//const int dx[]={0,-1,1,0};
+//const int dy[]={1,0,0,-1};
+
+int main(){
+ 
+ ios_base::sync_with_stdio(false); 
+ cin.tie(NULL);
+ cout.tie(NULL);
+ 
+ ll k,t,i,h,y,x,kk,d,l,j,p,n,m;
+ t=1;
+ while(t--){
+   cin>>x;
+   d=0;
+   for(i=-128;i<129;i++){
+     for(j=-128;j<129;j++)
+     {
+      h=i*i*i*i*i;
+      k=j*j*j*j*j;
+      if(h==k+x)
+      {
+        cout<<i<<" "<<j;
+        d=1;
+        break;
+      }
+     }if(d) break;
+   }}}
+   
+   
+  
