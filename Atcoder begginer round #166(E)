@@ -1,0 +1,30 @@
+
+#include<bits/stdc++.h>
+using namespace std;
+#define ll long long
+#define pp pair<ll,ll>
+#define pb push_back
+//const int dx[]={0,-1,1,0};
+//const int dy[]={1,0,0,-1};
+
+int main(){
+ 
+ ios_base::sync_with_stdio(false); 
+ cin.tie(NULL);
+ cout.tie(NULL);
+ 
+ ll k,t,i,h,y,x,kk,d,l,j,p,n,m;
+ t=1;
+ while(t--){
+   cin>>n;
+	ll ans = 0;
+	map<int, int> mp;
+	for ( i = 0; i < n; i++) {
+	
+		cin >> y;
+		ans += mp[i - y];
+		mp[i + y]++;
+	}
+	cout << ans ;}
+	}
+	
