@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+ <head> 
+  <!-- Required meta tags --> 
+  <meta charset="utf-8"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> 
+  <!-- Bootstrap CSS --> 
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous"> 
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script> 
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script> 
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script> 
+  <title>BOOTSTRAP</title> 
+  <style>
+   body {
+            font-family: Arial, Helvetica, sans-serif;
+            
+            font-size: 14px;
+        }
+        html {
+            background-color: yellow;
+        }
+        .o{
+          background-color:green;
+          font-size:17px;
+        }
+       
+        </style> 
+ </head> 
+ <body> 
+  <nav class="navbar navbar-expand-lg navbar-light bg-light"> 
+   <!--<a class="navbar-brand" href="#"><img src="https://cdn1.vectorstock.com/i/1000x1000/36/45/college-logo-college-center-logo-vector-26443645.jpg" height="50" width="50"></a> --> 
+   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button> 
+   <div class="collapse navbar-collapse,a" id="navbarSupportedContent" style="background-color: yellow;"> 
+    <ul class="navbar-nav mr-auto"> 
+     <li class="nav-item active"> <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a> </li> 
+     <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Department </a> 
+      <div class="dropdown-menu" aria-labelledby="navbarDropdown"> 
+       <a class="dropdown-item" href="#k">Mathematics</a> 
+       <a class="dropdown-item" href="#k1">Physics</a> 
+       <a class="dropdown-item" href="#k2">Chemistry</a> 
+      </div> </li> 
+     <li class="nav-item"> <a class="nav-link" href="#gk1">Contact</a> </li> 
+    </ul> 
+    <form class="form-inline my-2 my-lg-0"> 
+     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"> 
+     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> 
+    </form> 
+   </div> 
+  </nav> 
+  <div class="jumbotron" style="background-image:url(https://images.unsplash.com/photo-1513128034602-7814ccaddd4e?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60); background-size: 100% 120%;"> 
+   <h4 style="color:red;">BEST COACHING CENTER</h4> 
+   <h1 class="display-4" style=" color: blue;">ABC CLASSES</h1> 
+   <p class="lead" style=" color=yellow;">Where success is OUR Tradition</p> 
+   <hr class="my-4"> 
+   <br> 
+   <br> 
+   <br> 
+   <p></p> 
+   <h3> DIRECTOR'S MESSAGE</h3> 
+   <br> Dear Student, “Dream dream dream ! Conduct these dream into thoughts and then transform them into action”; these words of the living legend, visionary and our former president SH. A.P.J Abdul Kalam would become the driving force in your success. My Heartiest Congratulations to you for selecting IIT-JEE as your dre.satisfaction and the esteem of being tested at the world’s toughest competitive examination at 10+2 level. IITians epitomize the power of training and the way to do the things in a different manner. 
+   <p></p> 
+   <br> 
+   <br> 
+   <br> 
+   <a class="btn btn-primary btn-lg" href="#" role="button" bgcolor="yellow">REGISTRATION</a> 
+  </div> 
+  <div id="gk" style="  background-color: #5fdcb1;"> 
+   <h1 style="text-align: center;"><strong>Department</strong></h1> 
+  </div> 
+  <br> 
+  <br> 
+  <div style="color: blue;" id="k"> 
+   <h4>MATHEMATICS</h4> 
+  </div> 
+  <br> 
+  <p class="o">We are all aware with mathematics in this era mathematics is the best choice of all students and all scholar.Thete ia big roll ka math in JEE exam so,we need to catch it up clearly.AT our centre there are experienced teacher which are all from IIT . </p> 
+  <br> 
+  <br> 
+  <div style="color: blue;" id="k1"> 
+   <h4>PHYSICS</h4> 
+  </div> 
+  <br> 
+  <p class="o">Like mathematics , Physics also keeps the big role in the JEE exam .Many students think that physics is tougj to understand but they don't know that physics is an interesting subject to all.We have kept best physics teacher and experienced .They have a big degree in theirs careers . </p> 
+  <br> 
+  <br> 
+  <div style="color : blue;" id="k2"> 
+   <h4>CHEMISTRY</h4> 
+  </div> 
+  <br> 
+  <p class="o"> Chemistry is also keeps a great role in JEE EXAM so students always that no one can top in jee exam without chemistry along with math and physics .There are best and experienced teacher in our center so that students can achieve theirs goal to top IiT.and join a good college fot them. </p> 
+  <div id="gk1" style="  background-color: #5fdcb1;"> 
+   <h1 style="text-align: center;"><strong>Contact</strong></h1> 
+  </div> 
+  <br> 
+  <div style="text-align: center;"> 
+   <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ_BdAWxN2gjVUoJh_96vpwlFeHvGfDAQoGVA&amp;usqp=CAU" height="50" width="50">:+91 7398371748 
+   <br> 
+  </div> 
+ </body>
+</html>
