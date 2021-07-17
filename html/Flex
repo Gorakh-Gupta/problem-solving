@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+ <head> 
+  <link rel="stylesheet" href="style.css"> 
+ </head> 
+ <body> 
+  <h1>ASSIGNMENT -1</h1> 
+  <h3>FLEX</h3> 
+  <p> The flex property sets the flexible length on flexible items. Note: If the element is not a flexible item, the flex property has no effect.</p> 
+  <div class="container"> 
+   <img src=" https://images.unsplash.com/photo-1600931242358-aa3336de1acf?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60"> 
+   <img src="https://images.unsplash.com/photo-1600961621682-39fca9ad37a5?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=675&amp;q=80"> 
+   <img src="https://images.unsplash.com/photo-1600969968227-28a1dfa21455?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60"> 
+   <img src=" https://images.unsplash.com/photo-1600925110367-3c0f953fe4d0?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60"> 
+   <img src=" https://images.unsplash.com/photo-1600960524032-0bea29112895?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60"> 
+   <img src=" https://images.unsplash.com/photo-1600924336400-85058d2af4cb?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60"> 
+  </div> 
+ </body>
+</html>
