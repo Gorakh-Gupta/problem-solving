@@ -1,4 +1,7 @@
-# problem-solving
-Some Important And Best Problem Solutions
-Problems are  Taken form Best Coding Plateform
-@Codeforce @Atcoder @Codechef
+##  problem-solving <br>
+* Some Collection of Important and Best Problem  and their 
+Solutions. <br>
+* Problems are  Taken form Best Coding Plateform.<br>
+* @Codeforce <br>
+* @Atcoder <br>
+* @Codechef
