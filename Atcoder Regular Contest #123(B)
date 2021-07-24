@@ -1,0 +1,68 @@
+//sequence triplets
+
+
+#include<bits/stdc++.h>
+using namespace std;
+#define ll long long
+#define PII pair<ll,ll>
+//define ll mod=1e9+7;
+#define pk pop_back
+#define pb push_back
+const int dx[]={0,-1,1,0};
+const int dy[]={1,0,0,-1};
+const ll inf =1e18;
+
+
+int main(){
+ 
+ ios_base::sync_with_stdio(false); 
+ cin.tie(NULL);
+ cout.tie(NULL);
+ 
+  ll t,n,h,k,i,j,l,x,p,d,m,z,y;
+  t=1;
+// cin>>t;
+  while(t--){
+   // string s,g;
+    cin>>n;
+   //priority_queue<ll>a,b,c;
+ priority_queue<ll, vector<ll>, greater<ll> >a,b,c, Q;
+
+
+   for(i=0;i<n;i++){
+     cin>>x;
+     a.push(x);}
+     for(i=0;i<n;i++){
+       cin>>y;
+     b.push(y);}
+     for(i=0;i<n;i++){
+       cin>>z;
+     c.push(z);
+   }
+   d=0;
+   
+while(!a.empty()&&!b.empty()&&!c.empty())
+{
+  h=a.top();
+ // cout<<h<<endl;
+  a.pop();
+  while(b.top()<=h&&!b.empty())
+  {
+    b.pop();
+  }
+  if(b.empty())break;
+  else{
+    p=b.top();
+   // cout<<p<<endl;
+    b.pop();
+    while(c.top()<=p&&!c.empty())
+  {
+    c.pop();
+ }
+ if(!c.empty())
+ {c.pop();
+ d++;}
+  }
+}cout<<d<<endl;}}
+
+
