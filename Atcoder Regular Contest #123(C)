@@ -1,0 +1,28 @@
+/// find min number make up from using 1,2,3
+Such that total sum is N;
+
+
+#include <bits/stdc++.h>
+int T;std::unordered_map <long long,int> M;
+int dfs(long long a) {
+	if(a<0) return 10;
+	if(a==0) return 0;
+	if(M.find(a)!=M.end()) return M[a];
+	for(int k=1;k<=4;k++) 
+		for(int i=k;i<=3*k;i++) 
+          if((a-i)%10==0&&dfs((a-i)/10)<=k)
+           {
+                M[a]=k;
+                return k;
+           } 
+	M[a]=5;
+        return 5;
+}
+int main(void) {
+	scanf("%d",&T);
+	while(T--) {
+   long long a;
+   scanf("%lld",&a);
+    printf("%d\n",dfs(a));
+}
+}
