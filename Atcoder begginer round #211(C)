@@ -1,0 +1,46 @@
+// searching a pattern
+
+
+#include<bits/stdc++.h>
+using namespace std;
+#define ll long long
+#define PII pair<ll,ll>
+const ll mod=1e9+7;
+#define pk pop_back
+#define pb push_back
+const int dx[]={0,-1,1,0};
+const int dy[]={1,0,0,-1};
+const ll inf =1e5;
+int dp[inf+2][10];
+
+int main(){
+ 
+ ios_base::sync_with_stdio(false); 
+ cin.tie(NULL);
+ cout.tie(NULL);
+ 
+  ll t,n,h,k,i,j,l,x,p,d,m,z,y;
+  t=1;
+ //cin>>t;
+  while(t--){
+   string s;
+   cin>>s;
+   
+   map<char,int>mp;
+   n=s.size();
+   string g="chokudai";
+ //  int dp[n+1][9];
+   h=0;
+   for(i=0;i<=n;i++) 
+   dp[i][0]=1;
+   
+   for(i=1;i<=n;i++){
+     for(j=1;j<=8;j++)
+     {
+       dp[i][j]=dp[i-1][j];
+       if(s[i-1]==g[j-1])
+       dp[i][j]=(dp[i][j]+dp[i-1][j-1])%mod;
+     }
+     }
+     cout<<dp[n][8];}
+     }
