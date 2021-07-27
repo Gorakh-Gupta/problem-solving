@@ -1,0 +1,58 @@
+// LCM of GCD'S
+
+
+ 
+#include<bits/stdc++.h>
+using namespace std;
+#define ll long long
+#define PII pair<ll,ll>
+const ll mod=1e9+7;
+#define pk pop_back
+#define pb push_back
+const int dx[]={0,-1,1,0};
+const int dy[]={1,0,0,-1};
+const ll inf =1e18;
+
+
+
+
+int main(){
+ 
+ ios_base::sync_with_stdio(false); 
+ cin.tie(NULL);
+ cout.tie(NULL);
+ 
+  ll t,n,h,k,i,j,l,x,r,w,p,d,m,z,y;
+  t=1;
+ h=0;
+ //cin>>t;
+ 
+ while(t--){
+   cin>>n;
+    ll a, b;
+    cin >> a >> b;
+    set<ll> xx, yy;
+    xx.emplace(a);
+    yy.emplace(b);
+ 
+    for(i=1;i<n;i++) {
+        cin >> a >> b;
+        set<ll> nx, ny;
+        for (auto e : xx) {
+            nx.emplace(__gcd(a, e));
+            nx.emplace(__gcd(b, e));
+        }
+        for (auto e : yy) {
+            ny.emplace(__gcd(a, e));
+            ny.emplace(__gcd(b, e));
+        }
+        xx = nx;
+        yy = ny;
+    }
+ 
+    ll ans = 1;
+    for (auto u : xx) 
+    for (auto v : yy) 
+    ans=max(ans, (u*v/__gcd(u,v)));
+    cout << ans << endl;
+   }}
