@@ -1,0 +1,51 @@
+//LIS ON TREE
+
+// longest increasing subsequence in the path
+//of each node from node 1 in a tree
+#include <bits/stdc++.h>
+using namespace std;
+
+const int N = 200005;
+int n, a[N], ans[N], t[N], len;
+vector<int> g[N];
+
+void dfs(int u, int fa)
+{
+    int pos = -1, v = -1, flag = 0;
+    if (len == 0 || a[u] > t[len]) 
+    len ++, t[len] = a[u], flag = 1;
+    else {
+ pos =lower_bound(t+1, t+1+len, a[u])-t;
+ if (pos <= len)
+  v = t[pos], t[pos] = a[u];
+    }
+    
+    ans[u] = len;
+    for (int i = 0; i < (int)g[u].size(); i++) {
+        int v = g[u][i];
+        if (v == fa) 
+        continue;
+        dfs(v, u);
+    }
+    if (flag) len --;
+    else if (v != -1) t[pos] = v;
+}
+
+int main() {
+  
+    cin >> n;
+    
+    for (int i = 1; i <= n; i++) 
+    cin >> a[i];
+    
+    for (int i = 1, x, y; i < n; i++)
+    {
+        cin >> x >> y;
+        g[x].push_back(y);
+        g[y].push_back(x);
+    }
+    
+    dfs(1, 0);
+    for (int i = 1; i <= n; i++) 
+    cout << ans[i] << '\n';
+}
