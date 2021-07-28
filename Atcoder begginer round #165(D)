@@ -1,0 +1,8 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+  long int a,b,n;
+  cin>>a>>b>>n;
+  long int x=min(b-1,n);
+  cout<<(x*a)/b-a*(x/b);
+  }
