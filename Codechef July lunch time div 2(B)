@@ -1,0 +1,59 @@
+// rotate only array B 
+
+#include<bits/stdc++.h>
+using namespace std;
+#define ll long long
+#define PII pair<ll,ll>
+const ll mod=1e9+7;
+#define pk pop_back
+#define pb push_back
+const int dx[]={0,-1,1,0};
+const int dy[]={1,0,0,-1};
+const ll inf =1e18;
+
+
+int main(){
+ 
+ ios_base::sync_with_stdio(false); 
+ cin.tie(NULL);
+ cout.tie(NULL);
+ cout<<fixed<<setprecision(9);
+ 
+  ll t, n,h,k,i,j,l,x,r,w,p,d,m,z,y;
+
+t=1;
+// cin>>t;
+ while(t--){
+   cin>>n;
+  
+   ll a[n],b[n];
+   map<ll,ll>mp;
+   for(i=0;i<n;i++){
+   cin>>a[i];
+   }
+   set<vector<ll>>s;
+   h=999999;
+   for(i=0;i<n;i++){
+     cin>>b[i];
+   d=(a[0]+b[i])%n;
+   h=min(d,h);}
+   
+   for(i=0;i<n;i++)
+   {
+     l=(a[0]+b[i])%n;
+     if(l==h){
+       vector<ll>v;
+       
+       for(j=0;j<n;j++)
+      v.pb((a[j]+b[(i+j)%n])%n);
+     
+     s .insert(v);
+     }
+   }
+   //cout<<v.size()<<endl;
+   vector<ll>ans=*s.begin();
+   for(auto it:ans)
+   cout<<it<<" ";
+   cout<<endl;}}
+   
+   
