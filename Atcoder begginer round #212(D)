@@ -1,0 +1,50 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define ll long long
+#define PII pair<ll,ll>
+const ll mod=1e9+7;
+#define pk pop_back
+const ll N=200005;
+#define pb push_back
+const int dx[]={0,-1,1,0};
+const int dy[]={1,0,0,-1};
+const ll inf =1e18;
+int dp[N];
+
+
+int main(){
+ 
+ ios_base::sync_with_stdio(false); 
+ cin.tie(NULL);
+ cout.tie(NULL);
+// cout<<fixed<<setprecision(9);
+ 
+  ll t, n,h,k,i,j,l,x,r,w,p,d,m,z,y;
+//cin>>t;
+// while(t--){
+   //cin>>n>>m;
+   vector<ll>a(n),b(m);
+priority_queue<ll, vector<ll>,greater<ll>>pq;
+   cin>>t;
+   d=0;
+   while(t--){
+     cin>>h;
+     if(h==1){
+       cin>>x;
+       pq.push(x-d);
+     }
+     else if(h==2){
+       cin>>x;
+       d+=x;
+       
+     }
+    else if(h==3)
+     {
+       p=pq.top();
+       cout<<p+d<<endl;
+       pq.pop();
+     }
+     
+   }}
+   
+ 
