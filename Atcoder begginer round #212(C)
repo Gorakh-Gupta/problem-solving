@@ -1,0 +1,55 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define ll long long
+#define PII pair<ll,ll>
+const ll mod=1e9+7;
+#define pk pop_back
+const ll N=200005;
+#define pb push_back
+const int dx[]={0,-1,1,0};
+const int dy[]={1,0,0,-1};
+const ll inf =1e18;
+int dp[N];
+
+
+int main(){
+ 
+ ios_base::sync_with_stdio(false); 
+ cin.tie(NULL);
+ cout.tie(NULL);
+// cout<<fixed<<setprecision(9);
+ 
+  ll t, n,h,k,i,j,l,x,r,w,p,d,m,z,y;
+//cin>>t;
+// while(t--){
+   cin>>n>>m;
+   vector<ll>a(n),b(m);
+   
+  // vector<pair<ll,ll>>v(n+m);
+   
+   
+   d=9999999999;
+   for(i=0;i<n;i++){
+     cin>>a[i];}
+     sort(a.begin(),a.end());
+     //v.pb({a[i],1ll});}
+     for (i=0;i<m;i++){
+       cin>>b[i];}
+       sort(b.begin(),b.end());
+       for(auto xx:a){
+        // cout<<xx<<endl;
+         
+ l=lower_bound(b.begin(),b.end(),xx)-b.begin();
+ //r=upper_bound(b.begin(),b.end(),xx)-b.begin();
+
+ if(l>0){
+   d=min(d,abs(b[l-1]-xx));
+ }
+
+ d=min(abs(xx-b[l]),d);
+ 
+// d=min(d,abs(xx-b[r]));
+ 
+ }
+ cout<<d;}
+ 
