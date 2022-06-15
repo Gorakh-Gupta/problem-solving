@@ -1,0 +1,24 @@
+class Solution {
+public:
+    int lastStoneWeightII(vector<int>& st) {
+        
+        
+     int s=0;
+        for(auto x:st)s+=x;
+        int sumA=s/2;
+        vector<int>v(sumA+1,0);
+        v[0]=1;
+         for (auto x : st) {
+            for (int j = sumA; j >= x; j--) {
+                v[j] = v[j] | v[j - x];
+            }
+        }
+        // find the largest sumA
+        while (sumA) {
+            if (v[sumA])
+                break;
+            sumA--;
+        }
+        return s - 2*sumA;
+    }
+};
