@@ -1,0 +1,28 @@
+#include <iostream>
+#include<algorithm>
+#include<string.h>
+#include<math.h>
+using namespace std;
+
+//Compiler version g++ 6.3.0
+
+int main()
+{ 
+   long long int  t,n ,z,i,j,e,f,c,y,s,d,m,l,r,x,k,q,w;
+ cin>>n;
+ long long int a[n];
+ x=0,y=0,s=0;
+ for(i=0;i<n;i++)
+ cin>>a[i];
+ sort(a,a+n);
+ for(j=0;j<n;j++)
+ s+=a[j];
+   for(i=0;i<n/2;i++)
+   y+=a[i];
+   x=s-y;
+   cout<<x*x+y*y;}
+ 
+ 
+ 
+ 
+ 
