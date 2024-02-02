@@ -1,0 +1,41 @@
+#include<bits/stdc++.h>
+using namespace std;
+void solve();
+int main(){
+    int t;
+    cin>>t;
+    while(t--){
+        solve();
+        cout<<"\n";
+    }
+}
+void solve(){
+ long long int n,m,k;
+ cin>>n;
+ vector<int>a(n);
+ for(int i=0;i<n;i++)cin>>a[i];
+ vector<int>b(n,-1);
+ b[0]=0;
+ b[1]=1;
+ for(int i=1;i<n-1;i++){
+     if(abs(a[i]-a[i-1])>abs(a[i]-a[i+1])){
+         b[i+1] = b[i]+1;
+     }else b[i+1]=b[i]+abs(a[i]-a[i+1]);
+ }
+ vector<int>c(n,-1);
+ c[n-1]=0;
+ c[n-2]=1;
+ for(int i=n-2;i>0;i--){
+     if(abs(a[i]-a[i-1]) <  abs(a[i]-a[i+1])){
+         c[i-1] = c[i]+1;
+     }else c[i-1]=c[i]+abs(a[i]-a[i-1]);
+ }
+ cin>>m;
+ while(m--){
+     int x,y;
+     cin>>x>>y;
+     if(x<y)cout<<b[y-1]-b[x-1];
+     else cout<<abs(c[x-1]-c[y-1]);
+     cout<<endl;
+ }
+}
