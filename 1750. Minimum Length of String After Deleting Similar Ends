@@ -1,0 +1,21 @@
+class Solution {
+public:
+
+//two pointer approach
+    int minimumLength(string s) {
+        
+        int i=0,j=s.size()-1;
+        int n = s.size();
+        while(i<j){
+            if(s[i]==s[j]){
+            while(i<j and i<n and s[i]==s[i+1]){i++;}
+            while(j>i and s[j]==s[j-1])j--;
+            i++;
+            j--;
+            }
+            else break;
+        }
+        cout<<i<<" "<<j<<endl;
+        return j-i+1<0?0:j-i+1;
+    }
+};
