@@ -1,0 +1,43 @@
+#include<bits/stdc++.h>
+using namespace std;
+void solve();
+int main(){
+    int t;
+    cin>>t;
+    while(t--){
+        solve();
+        cout<<"\n";
+    }
+}
+
+    
+void solve(){
+   long long int n,m,k;
+   cin>>n>>m>>k;
+   long long int nn =n,mm=m;
+   vector<long long int>a,aa;
+   long long int i=0;
+   a.push_back(0);
+   set<long long int>ans;
+   while(k%n==0){
+               i++;
+             a.push_back(i);
+             n=n*nn;
+   } aa.push_back(0);
+   i=0;
+   while(k%m==0){
+               i++;
+             aa.push_back(i);
+             m=m*mm;
+   }
+   
+   for(int ii=0;ii<(int)a.size();ii++){
+               for(int j=0;j<(int)aa.size();j++){
+                           long long int h = pow(nn,ii);
+                           long long int hh = pow(mm,j);
+                           if(k%(h*hh)==0)ans.insert(k/(h*hh));
+               }
+   }
+  cout<<ans.size();
+
+}
