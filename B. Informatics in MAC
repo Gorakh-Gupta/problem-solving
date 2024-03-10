@@ -1,0 +1,64 @@
+#include<bits/stdc++.h>
+using namespace std;
+void solve();
+int main(){
+    int t;
+    cin>>t;
+    while(t--){
+        solve();
+        cout<<"\n";
+    }
+}
+vector<int> Prefix_Mex(vector<int>& A, int n) {
+    // Create a boolean vector to track the presence of numbers
+    vector<bool> b(n+1);
+     
+    // Initialize mex (minimum excluded value) to 0
+    int mex = 0;
+     
+    // Result vector to store the Prefix Mex values
+    vector<int> result(n);
+ 
+    // Loop through the input vector A
+    for (int i = 0; i < n; i++) {
+        // Mark the current element as present
+        b[A[i]] = true;
+ 
+        // Update mex until a non-present value is found
+        while (b[mex] == true) {
+            mex++;
+        }
+ 
+        // Store the current mex value in the result vector
+        result[i] = mex;
+    }
+ 
+    // Return the result vector
+    return result;
+}
+    
+void solve(){
+  int n;
+ cin>>n;
+ vector<int>v(n);
+ for(int i=0;i<n;i++)cin>>v[i];
+ vector<int>l,r;
+ l = Prefix_Mex(v,n);
+ reverse(v.begin(),v.end());
+ r=Prefix_Mex(v,n);
+ reverse(r.begin(),r.end());
+//  for(auto x:r)cout<<x<<endl;
+//  for(auto x:l)cout<<x<<endl;
+ 
+ int f = 0;
+ for(int i=0;i<n-1;i++){
+             if(l[i]==r[i+1]){
+              cout<<2<<endl;
+              cout<<1<<" "<<i+1<<endl;
+              cout<<i+2<<" "<<n;
+              f=1;
+              break;
+             }
+ }
+ if(f==0)cout<<-1;
+}
