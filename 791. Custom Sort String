@@ -1,0 +1,25 @@
+class Solution {
+public:
+    string customSortString(string order, string s) {
+        map<char,int>mp;
+        for(auto x:s)mp[x]++;
+        string ans="";
+        for(auto x:order){
+            string h ="";
+            if(mp[x]>0){
+                int k = mp[x];
+                while(k--)h+=x;
+                mp[x]=0;
+            }
+            ans+=h;
+        }
+
+        for(auto x:mp){
+            if(x.second>0){
+                int j=x.second;
+                while(j--)ans+=x.first;
+            }
+        }
+        return ans;
+    }
+};
