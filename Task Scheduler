@@ -1,0 +1,18 @@
+class Solution {
+public:
+    int leastInterval(vector<char>& tasks, int n) {
+
+        vector<int> v(26, 0);
+        for (auto x : tasks) {
+            v[x - 'A']++;
+        }
+        sort(v.rbegin(), v.rend());
+        int cnk = v[0] - 1;
+        int leftcnk = cnk * n;
+
+        for (int i = 1; i < 26; i++) {
+            leftcnk -= min(v[i], cnk);
+        }
+        return leftcnk < 0 ? tasks.size() : leftcnk + tasks.size();
+    }
+};
