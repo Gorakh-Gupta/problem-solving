@@ -1,0 +1,44 @@
+#include<bits/stdc++.h>
+using namespace std;
+void solve();
+
+int modulo(int a, int b, int n){
+    long long x=1, y=a; 
+    while (b > 0) {
+        if (b%2 == 1) {
+            x = (x*y) % n; // multiplying with base
+        }
+        y = (y*y) % n; // squaring the base
+        b /= 2;
+    }
+    return x % n;
+}
+
+int main(){
+    int t;
+    cin>>t;
+    while(t--){
+                int n ,m,k;
+                cin>>n>>k;
+   vector<int>v(n);
+   long long P = 1e9+7,S=0;
+   long long h =0;
+   for(int i=0;i<n;i++)cin>>v[i],h+=v[i];
+   
+long long d =0, ans =0;
+for(int i=0;i<n;i++){
+            d+=v[i];
+            if(d<0)d=0;
+            ans = max(d, ans);
+}
+   h = (h % P + P) % P;
+    ans = ans % P;
+    int tt = 1;
+    for (int i = 0; i < k; i++) {
+        tt = tt * 2 % P;
+    }
+    int a = (h + ans * tt - ans + P) % P;
+
+   cout<<a<<endl;
+    }
+}
