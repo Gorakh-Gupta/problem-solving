@@ -1,0 +1,63 @@
+#include<bits/stdc++.h>
+using namespace std;
+void solve();
+bool check(int);
+int main(){
+    int t;
+    cin>>t;
+    while(t--){
+                solve();
+                cout<<endl;
+    }}
+    
+    
+       int dfs(int v, int f,int &res,int x,vector<vector<int>>&adj){
+            int sz = 1;
+            for (int u : adj[v]) {
+                if (u == f) {
+                    continue;
+                }
+                sz += dfs(u, v,res,x,adj);
+            }
+            if (sz >= x && f != v) {
+                ++res, sz = 0;
+            }
+            return sz;
+        }
+        
+     bool check(int x,int k,vector<vector<int>>&adj) {
+        int res = 0;
+        int t = dfs(0, 0,res,x,adj);
+        return (res > k || (t >= x && res == k) ? true : false);
+    }
+    
+ void solve(){
+  int n,k ;
+   cin>>n>>k;
+   vector<vector<int>>adj(n);
+   for(int i=0;i<n-1;i++){
+               int x,y;
+               cin>>x>>y;
+               x--,y--;
+               adj[x].push_back(y);
+               adj[y].push_back(x);
+   }
+   
+   
+   
+  int low = 1, high = n / (k + 1) + 1;
+    while (high - low > 1) {
+        int mid = (low + high) / 2;
+        if (check(mid,k,adj)) {
+            low = mid;
+        } else {
+            high = mid;
+        }
+    }
+   cout<<low;
+}
+
+
+
+
+
