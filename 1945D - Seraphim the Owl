@@ -1,0 +1,39 @@
+#include<bits/stdc++.h>
+using namespace std;
+void solve();
+bool check(int);
+int main(){
+    int t;
+    cin>>t;
+    while(t--){
+                solve();
+                cout<<endl;
+    }}
+    
+ void solve(){
+  int n,k ;
+   cin>>n>>k;
+   vector<long long int>v(n),a(n);
+   for(int i=0;i<n;i++)cin>>v[i];
+   for(int i=0;i<n;i++)cin>>a[i];
+   k--;
+   long long int ans =0;
+   vector<long long int>s(n);
+   s[n-1]=v[n-1];
+  
+   for(int i=n-2;i>-1;i--){
+     ans =  min(ans+v[i+1], ans+a[i+1]);
+     s[i]=ans+v[i];
+   }
+   ans = 99999999999999;;
+   for(int i=k;i>-1;i--){
+    ans = min(ans, s[i]);
+   }
+   cout<<ans;
+   
+}
+
+
+
+
+
