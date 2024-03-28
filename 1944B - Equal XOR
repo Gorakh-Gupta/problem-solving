@@ -1,0 +1,51 @@
+#include<bits/stdc++.h>
+using namespace std;
+void solve();
+bool check(int);
+int main(){
+    int t;
+    cin>>t;
+    while(t--){
+                solve();
+                cout<<endl;
+    }}
+    
+ void solve(){
+  int n,k ;
+   cin>>n>>k;
+   k=2*k;
+   
+   vector<long long int>v(2*n),a(n+1,0);
+   for(int i=0;i<2*n;i++)cin>>v[i];
+   for(int i=0;i<n;i++)a[v[i]]++;
+   vector<int>a1,a2,a3;
+   for(int i=1;i<=n;i++){
+               if(a[i]==0)a1.push_back(i);
+               else if(a[i]==1)a2.push_back(i);
+               else a3.push_back(i);
+   }int h=0;
+   for(auto x:a3){
+                    if(h<k){
+               h+=2;
+               cout<<x<<" "<<x<<" ";}
+   }
+    for (auto x : a2){
+            if (h < k){
+                h++;
+                cout << x << " ";
+            }
+        }
+        cout << "\n";
+        h=0;
+        for(auto x:a1){
+                    if(h<k){
+               h+=2;
+               cout<<x<<" "<<x<<" ";}
+   }
+    for (auto x : a2){
+            if (h < k){
+                h++;
+                cout << x << " ";
+            }
+        }
+ }
