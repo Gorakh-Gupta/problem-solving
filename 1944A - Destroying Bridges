@@ -1,0 +1,21 @@
+#include<bits/stdc++.h>
+using namespace std;
+void solve();
+bool check(int);
+int main(){
+    int t;
+    cin>>t;
+    while(t--){
+                solve();
+                cout<<endl;
+    }}
+    
+ void solve(){
+  long long int n,m,k ;
+   cin>>n>>k;
+   if(k>=n-1)cout<<1;
+   else cout<<n;
+//    cout<<k/n+1+k/m+1;
+ }
+ 
+ 
