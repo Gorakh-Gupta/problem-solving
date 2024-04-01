@@ -1,0 +1,63 @@
+#include<bits/stdc++.h>
+using namespace std;
+void solve();
+bool check(int);
+int main(){
+    int t;
+    cin>>t;
+    while(t--){
+                solve();
+                cout<<endl;
+    }}
+    
+  bool fun(string s,string t){
+              int n = s.size();
+              int h =0;
+              for(int i=0;i<n;i++){
+                          if(s[i]!=t[i])h++;
+              }
+              if(h==1)return true;
+              return false;
+  }
+    
+ void solve(){
+  int n,k ;
+   cin>>n;
+   string s;
+   cin>>s;
+   vector<int>v;
+
+   for(int i=1;i*i<=n;i++){
+               if(n%i==0) v.push_back(i);
+               if(n%i==0 and n!=i*i and i!=1) v.push_back(n/i);
+   }
+   sort(v.begin(),v.end());
+   int ans = n;
+   for(auto x:v){
+   multiset<string>ss;
+   set<string>sss;
+   for(int i=0;i<=n-x;i+=x){
+    ss.insert(s.substr(i,x));
+    sss.insert(s.substr(i,x));
+   }
+   if(sss.size()==1){
+               ans = x;
+               break;
+   }
+   else if(sss.size()==2){
+             string g=*ss.begin();
+             string gg = *ss.rbegin();
+             if(fun(g,gg) and( ss.count(g)==1 || ss.count(gg)==1)){
+                         ans = g.size();
+                         break;
+             }
+}
+   }
+   cout<<ans;
+   
+}
+
+
+
+
+
