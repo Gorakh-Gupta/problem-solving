@@ -1,0 +1,32 @@
+#include<bits/stdc++.h>
+using namespace std;
+void solve();
+
+  bool fun(int m){
+ int h=0;
+  while(m>0){
+              int r = m%10;
+              if(r > 1){h=1;break;}
+              m/=10;
+  }
+  if(h==0)return true;
+  return false;
+  }
+
+int main(){
+    int t;
+    cin>>t;
+    while(t--){
+  string n;
+  cin>>n;
+  
+  int h = (n[0]-'0')*10+(n[1]-'0');
+  if(h==0)cout<<12<<n.substr(2)<<" "<<"AM";
+  else if(h<12)cout<<n<<" "<<"AM";
+  else if(h==12)cout<<n<<" "<<"PM";
+  else {
+              if(h-12<10)cout<<0<<h-12<<n.substr(2)<<" "<<"PM";
+              else cout<<h-12<<n.substr(2)<<" "<<"PM";
+  }
+  cout<<endl;
+    }}
