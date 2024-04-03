@@ -1,0 +1,47 @@
+#include<bits/stdc++.h>
+using namespace std;
+void solve();
+
+  bool fun(int m){
+ int h=0;
+  while(m>0){
+              int r = m%10;
+              if(r > 1){h=1;break;}
+              m/=10;
+  }
+  if(h==0)return true;
+  return false;
+  }
+
+int main(){
+    int t;
+    cin>>t;
+    while(t--){
+  int n;
+  cin>>n;
+ string s = "##";
+ string ss = "..";
+
+   string h="";
+   string hh="";
+   for(int j=0;j<n;j++){
+               if(j%2==1)h+=s;
+               else h+=ss;
+   }
+   
+   for(int j=0;j<n;j++){
+               if(j%2==1)hh+=ss;
+               else hh+=s;
+   }
+   
+   
+  for(int j=0;j<n;j++){
+              
+              if(j%2==1){
+               cout<<h<<endl<<h<<endl;
+              }else{
+                cout<<hh<<endl<<hh<<endl;
+              }
+  }
+
+ }}
