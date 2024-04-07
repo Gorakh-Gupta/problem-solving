@@ -1,0 +1,21 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+void solve();
+bool check(int);
+int main(){
+    int t;
+    cin>>t;
+    while(t--){
+                solve();
+                cout<<endl;
+    }}
+    
+ void solve(){
+    ll n,m,k;
+    cin >>n>>k;
+    if((k<n and 2*k>n+1) or n<k)cout<<"NO";
+    
+    else cout<<"YES"<<endl<<2<<endl<<n-k+1<<" "<<1;
+                  
+ }
