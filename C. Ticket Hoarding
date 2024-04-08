@@ -1,0 +1,31 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+void solve();
+bool check(int);
+int main(){
+    int t;
+    cin>>t;
+    while(t--){
+                solve();
+                cout<<endl;
+    }}
+    
+ void solve(){
+    ll n,m,k;
+    cin >>n>>m>>k;
+    vector<ll>v(n);
+    for(int i=0;i<n;i++)cin>>v[i];
+    sort(v.begin(), v.end());
+   ll ans=0;
+    for(ll i=0;i<n;++i){
+        if(k<=m){
+            ans+=(v[i]+(m*i))*k;
+            break;
+        }else{
+            ans+=(v[i]+(m*i))*m;
+            k-=m;
+        }
+    }
+   cout<<ans;
+    }
