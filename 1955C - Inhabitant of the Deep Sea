@@ -1,0 +1,46 @@
+#include<bits/stdc++.h>
+using namespace std;
+void solve();
+
+  bool fun(int m){
+ int h=0;
+  while(m>0){
+              int r = m%10;
+              if(r > 1){h=1;break;}
+              m/=10;
+  }
+  if(h==0)return true;
+  return false;
+  }
+
+int main(){
+    int t;
+    cin>>t;
+    while(t--){
+    long long int n,k ;
+                cin>>n>>k;
+            long long int ans =0;
+            vector<int>v(n);
+            for(int i=0;i<n;i++)cin>>v[i],ans+=v[i];
+            if(ans<=k)cout<<n;
+            else{
+                        
+                        long long int l = (k-1)/2+1;
+                        long long int r = k-l;
+                        long long int h =0,i=0;
+                        while(l>=v[i]){
+                                    h++;
+                                    l-=v[i];
+                                    i++;
+                        }
+                        i=n-1;
+                        while(r>=v[i]){
+                                    h++;
+                                    r-=v[i];
+                                    i--;
+                        }
+                        cout<<h;
+            }
+            cout<<endl;
+
+ }}
