@@ -1,0 +1,61 @@
+#include<bits/stdc++.h>
+using namespace std;
+void solve();
+
+  bool fun(int m){
+ int h=0;
+  while(m>0){
+              int r = m%10;
+              if(r > 1){h=1;break;}
+              m/=10;
+  }
+  if(h==0)return true;
+  return false;
+  }
+
+int main(){
+    int t;
+    cin>>t;
+    while(t--){
+    int n,m,k ;
+              cin>>n>>m>>k;
+           int ans =0;
+            vector<int>v(n),a(m);
+            multiset<int>todo,done,extra;
+            for(int i=0;i<n;i++)cin>>v[i];
+            for(int i=0;i<m;i++)cin>>a[i],todo.insert(a[i]);
+            
+            for(int j=0;j<m;j++){
+                        if(todo.find(v[j]) != todo.end()){
+                                    todo.erase(todo.find(v[j]));
+                                    done.insert(v[j]);
+                        }else extra.insert(v[j]);
+            }
+            
+    if(done.size()>=k)ans++;
+            
+            for(int j=m;j<n;j++){
+                        int old = v[j-m];
+                           if (extra.find(old) != extra.end()) {
+            extra.erase(extra.find(old));
+        } else if (done.find(old) != done.end()) {
+            done.erase(done.find(old));
+            todo.insert(old);
+        }
+        if(todo.find(v[j]) != todo.end()){
+                                    todo.erase(todo.find(v[j]));
+                                    done.insert(v[j]);
+                        }
+                        else extra.insert(v[j]);
+                        
+            if(done.size()>=k)ans++;
+            // ans+=((int);
+                        
+            }
+    
+    cout<<ans<<endl;
+                
+    }
+}
+
+        
