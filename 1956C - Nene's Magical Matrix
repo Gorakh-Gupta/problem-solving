@@ -1,0 +1,42 @@
+#include<bits/stdc++.h>
+using namespace std;
+void solve();
+
+  bool fun(int m){
+ int h=0;
+  while(m>0){
+              int r = m%10;
+              if(r > 1){h=1;break;}
+              m/=10;
+  }
+  if(h==0)return true;
+  return false;
+  }
+
+int main(){
+    int t;
+    cin>>t;
+    while(t--){
+    int n;
+              cin>>n;
+              int ans =0;
+              for(int i=1;i<=n;i++) ans+=(2*i-1)*i;
+
+              if(n==1){
+                          cout<<1<<" "<<1<<endl;
+                          cout<<1<<" "<<1<<" "<<1<<endl;
+              }else{
+                          int m =n*(n+1)/2;
+                          cout<<ans<<" "<<n*2<<endl;
+                          for(int i=n;i>0;i--){
+                                      cout<<1<<" "<<i<<" ";
+                                      for(int j=1;j<=n;j++)cout<<j<<" ";
+                                      cout<<endl;
+                                      cout<<2<<" "<<i<<" ";
+                                      for(int j=1;j<=n;j++)cout<<j<<" ";
+                                      cout<<endl;
+                          }
+                         
+              }
+    }
+}
