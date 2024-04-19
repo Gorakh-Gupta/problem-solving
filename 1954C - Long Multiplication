@@ -1,0 +1,50 @@
+#include<bits/stdc++.h>
+using namespace std;
+void solve();
+
+  bool fun(int m){
+ int h=0;
+  while(m>0){
+              int r = m%10;
+              if(r > 1){h=1;break;}
+              m/=10;
+  }
+  if(h==0)return true;
+  return false;
+  }
+
+int main(){
+    int t;
+    cin>>t;
+    while(t--){
+    int n,d,c;
+    string s,ss;
+              cin>>s>>ss;
+              int k =0,l=0;
+              for(int i=0;i<s.size();i++){
+                          if(s[i]==ss[i] and k==0 and d==0)continue;
+                          else if(k==1){
+                                      if(s[i]>ss[i]){
+                                        char r = ss[i];
+                                        ss[i]=s[i];
+                                        s[i]=r;
+                                      }
+                          }
+                          else if(l==1){
+                                      if(s[i]<ss[i]){
+                                        char r = ss[i];
+                                        ss[i]=s[i];
+                                        s[i]=r;
+                                      }
+                          }
+                          else if(s[i]>ss[i] and k==0){
+                                      k=1;
+                          }
+                          else if(s[i]<ss[i] and l==0){
+                                      l=1;
+                          }
+                          
+                        //   cout<<l<<k;
+              }
+              cout<<s<<endl<<ss<<endl;
+    }}
