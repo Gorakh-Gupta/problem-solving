@@ -1,0 +1,32 @@
+\
+#include<bits/stdc++.h>
+using namespace std;
+void solve();
+
+  bool fun(int m){
+ int h=0;
+  while(m>0){
+              int r = m%10;
+              if(r > 1){h=1;break;}
+              m/=10;
+  }
+  if(h==0)return true;
+  return false;
+  }
+
+int main(){
+    int t;
+    cin>>t;
+    while(t--){
+    int n,d,c;
+    string s,ss;
+              cin>>n>>c>>d;
+              if(c==1)cout<<"NO";
+              else{
+                          int j = (n-1)/c+1;
+                          int k = n-j;
+                          if(d<k)cout<<"YES";
+                          else cout<<"NO";
+              }
+              cout<<endl;
+    }}
