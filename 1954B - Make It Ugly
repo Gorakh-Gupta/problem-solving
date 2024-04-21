@@ -1,0 +1,41 @@
+#include<bits/stdc++.h>
+using namespace std;
+void solve();
+
+  bool fun(int m){
+ int h=0;
+  while(m>0){
+              int r = m%10;
+              if(r > 1){h=1;break;}
+              m/=10;
+  }
+  if(h==0)return true;
+  return false;
+  }
+
+int main(){
+    int t;
+    cin>>t;
+    while(t--){
+    int n,d,c;
+    string s,ss;
+              cin>>n;
+              vector<int>v(n);
+              for(int i=0;i<n;i++)cin>>v[i];
+              int j = v[0];
+              int k =0;
+              int h =999999999;
+              for(int i=0;i<n;i++){
+                         if(j==v[i])k++;
+                        //  else if(v[i]!=j){k=0;continue;}
+                         else{
+                           if(k>0)
+                           h = min(h,k);
+                           k=0;
+                         }
+              }
+              h = min(h,k);
+              if(h==n)cout<<-1;
+              else cout<<h;
+              cout<<endl;
+    }}
