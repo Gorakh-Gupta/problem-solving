@@ -1,0 +1,25 @@
+#include<bits/stdc++.h>
+using namespace std;
+void solve();
+
+  bool fun(int m){
+ int h=0;
+  while(m>0){
+              int r = m%10;
+              if(r > 1){h=1;break;}
+              m/=10;
+  }
+  if(h==0)return true;
+  return false;
+  }
+
+int main(){
+    int t;
+    cin>>t;
+    while(t--){
+    int k,n,d,c;
+              cin>>n>>c>>d;
+              if(2*c > d){
+                          cout<<d*(n/2)+c*(n%2);
+              }else cout<<c*n;
+              cout<<endl;}}
