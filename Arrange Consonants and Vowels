@@ -1,0 +1,48 @@
+/*
+Structure of the node of the linked list is as
+struct Node
+{
+    char data;
+    struct Node *next;
+
+    Node(char x){
+        data = x;
+        next = NULL;
+    }
+
+};
+*/
+
+class Solution {
+  public:
+    // task is to complete this function
+    // function should return head to the list after making
+    // necessary arrangements
+    struct Node* arrangeCV(Node* head) {
+        // Code here
+        Node* v = new Node('0');
+        Node* c = new Node('0');
+        
+        Node* vv = v;
+        Node* cc = c; //new Node('0');
+        
+        Node * t = head;
+        while(t){
+            char ch = t->data;
+            Node * j =  new Node(t->data);
+            if(ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u'){
+                v->next=j;
+                v = v->next;
+            }else{
+                c->next=j;
+                c=c->next;
+            }
+            t=t->next;
+        }
+        
+    c->next = NULL;
+    v->next=cc->next;
+    return vv->next;
+        
+    }
+};
