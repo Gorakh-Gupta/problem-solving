@@ -1,0 +1,48 @@
+#include<bits/stdc++.h>
+using namespace std;
+void solve();
+
+
+int main(){
+    int t;
+    cin>>t;
+    while(t--){
+     int n,d,p,k,m;
+             cin>>n>>k>>d;
+             vector< int>v(1+k),a(k+1),s(n+1),ss;
+     v[0] = 0;
+    a[0] = 0;
+    for(int i = 1; i <= k; i++)cin >> v[i];
+    
+    for(int i = 1; i <= k; i++)cin >> a[i];
+
+     while(d--){
+        int c;
+        cin >> c;
+        int l = 0, r = k;
+        while(l <= r)
+        {
+            int mid = l+r>>1;
+            if(a[mid] > c)
+            {
+                r = mid-1;
+            }
+            else
+            {
+                l = mid+1;
+            }
+        }
+        if(v[r] == c)
+        {
+            cout << a[r] << " ";
+            continue;
+        }
+        long long ans = a[r] + (c-v[r])*(a[r+1]-a[r])/(v[r+1]-v[r]);
+        cout << ans << " ";
+    }
+             cout<<endl;
+             
+    }}
+             
+             
+        
