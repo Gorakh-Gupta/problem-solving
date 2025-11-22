@@ -1,0 +1,35 @@
+class Solution {
+public:
+    unordered_map<int, int> m;
+    int t[2000][2000];
+    bool solve(vector<int> stones, int k, int idx) {
+        if (idx >= stones.size() - 1)
+            return true;
+        if (t[idx][k] != -1)
+            return t[idx][k];
+
+        bool k0 = false, k1 = false, kp = false;
+
+        if (m.find(stones[idx] + k) != m.end()) {
+            k0 = solve(stones, k, m[stones[idx] + k]);
+        }
+        if (k > 1 && m.find(stones[idx] + k - 1) != m.end()) {
+            kp = solve(stones, k - 1, m[stones[idx] + k - 1]);
+        }
+        if (m.find(stones[idx] + k + 1) != m.end()) {
+            k1 = solve(stones, k + 1, m[stones[idx] + k + 1]);
+        }
+
+        return t[idx][k] = k1 || k0 || kp;
+    }
+
+    bool canCross(vector<int>& stones) {
+        if (stones[1] - stones[0] != 1)
+            return false;
+        for (int i = 0; i < stones.size(); i++)
+            m[stones[i]] = i;
+        int step = 1;
+        memset(t, -1, sizeof t);
+        return solve(stones, 1, 1);
+    }
+};
