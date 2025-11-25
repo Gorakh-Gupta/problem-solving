@@ -1,0 +1,17 @@
+class Solution {
+public:
+    int smallestRepunitDivByK(int k) {
+        set<int>s;
+        int rem = 1;
+        int len =1;
+        while(rem%k !=0){
+            int n = rem*10+1;
+            rem = n%k;
+            len+=1;
+            if(s.count(rem))return -1;
+            s.insert(rem);
+        }
+        return len;
+
+    }
+};
