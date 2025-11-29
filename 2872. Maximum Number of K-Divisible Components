@@ -1,0 +1,51 @@
+class Solution {
+public:
+    int maxKDivisibleComponents(int n, vector<vector<int>>& edges,
+                                vector<int>& v, int k) {
+        if (n == 1)
+            return 1;
+        vector<long long> values;
+
+        for (auto x : v)
+            values.push_back(x);
+            
+        vector<int> in(n, 0);
+        map<int, vector<int>> mp;
+        for (auto x : edges) {
+            in[x[0]]++;
+            in[x[1]]++;
+            mp[x[0]].push_back(x[1]);
+            mp[x[1]].push_back(x[0]);
+        }
+        queue<int> q;
+        int ans = 0;
+        vector<bool> vis(n, 0);
+
+        for (int i = 0; i < n; i++) {
+            if (in[i] == 1) {
+                vis[i] = 1;
+                q.push(i);
+            }
+        }
+
+        while (!q.empty()) {
+            auto x = q.front();
+            if (values[x] % k == 0)
+                ans++;
+
+            cout << x << " " << values[x] << endl;
+            q.pop();
+            for (auto node : mp[x]) {
+                if (values[x] % k != 0) {
+                    values[node] += values[x];
+                }
+                in[node]--;
+                if (in[node] == 1) {
+                    vis[node] = 1;
+                    q.push(node);
+                }
+            }
+        }
+        return ans;
+    }
+};
