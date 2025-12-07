@@ -1,0 +1,20 @@
+int n = damage.size();
+        vector<long long> pref(n + 1, 0);
+        for (int i = 1; i <= n; ++i) pref[i] = pref[i-1] + damage[i-1];
+
+        long long ans = 0;
+        for (int i = 1; i <= n; ++i) {
+            // need value as derived
+            long long need = (long long)requirement[i-1] - hp + pref[i];
+
+            // search in pref[0..i-1] for first index t with pref[t] >= need
+            // lower_bound on pref.begin() .. pref.begin() + i
+            auto it = lower_bound(pref.begin(), pref.begin() + i, need);
+            if (it == pref.begin() + i) {
+                // no pref[t] >= need in [0..i-1]
+                continue;
+            }
+            int t = int(it - pref.begin()); // t in [0..i-1]
+            ans += (long long)(i - t);
+        }
+        return ans;
