@@ -1,0 +1,22 @@
+class Solution {
+public:
+    int countPermutations(vector<int>& a) {
+        int md = 1e9 + 7;
+        int n = a.size();
+
+        long long ans = 1;
+        int k = 0;
+
+        for (int i = 1; i < n; i++) {
+            if (a[0] >= a[i])
+                k++;
+        }
+        if (k)
+            return 0;
+        for (int i = 1; i < n; i++) {
+            ans *= i;
+            ans %= md;
+        }
+        return ans;
+    }
+};
