@@ -1,0 +1,27 @@
+class Solution {
+public:
+    int countCoveredBuildings(int n, vector<vector<int>>& a) {
+
+        sort(a.begin(), a.end());
+        map<int, vector<int>>x,y;
+        for(auto j:a){
+            x[j[0]].push_back(j[1]);
+            y[j[1]].push_back(j[0]);
+        }
+        
+        int ans =0;
+
+        for(auto s:a){
+            int i= s[0];
+            int j = s[1];
+            vector<int>&xx = x[i];
+            vector<int>&yy = y[j];
+            int k = lower_bound(xx.begin(), xx.end(), j)-xx.begin();
+            int kk = lower_bound(yy.begin(), yy.end(), i)-yy.begin();
+
+            if(k>0 && k<xx.size()-1 && kk>0 && kk <yy.size()-1)ans++;
+        }
+        return ans;
+        
+    }
+};
