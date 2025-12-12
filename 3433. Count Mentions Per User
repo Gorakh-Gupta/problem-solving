@@ -1,0 +1,56 @@
+class Solution {
+public:
+    vector<int> countMentions(int n, vector<vector<string>>& events) {
+        map<int, vector<int>> offline;
+        map<int, int> mp;
+        for (auto x : events) {
+            if (x[0] == "OFFLINE") {
+                offline[stoi(x[2])].push_back(stoi(x[1]));
+            }
+        }
+
+        for (auto x : events) {
+            if (x[0] == "OFFLINE")
+                continue;
+            else {
+                if (x[2] == "ALL") {
+                    for (int i = 0; i < n; i++)
+                        mp[i]++;
+                } else if (x[2][0] == 'i') {
+                    int k = x[2].size();
+                    string s = "";
+                    for (int j = 0; j < k; j++) {
+                        if (x[2][j] == 'i' || x[2][j] == 'd')
+                            continue;
+                        else if (x[2][j] == ' ') {
+                            mp[stoi(s)]++;
+                            s = "";
+                        } else
+                            s = s+ x[2][j];
+                    }
+                     mp[stoi(s)]++;
+                } else {
+                    int t = stoi(x[1]);
+                    for (int i = 0; i < n; i++) {
+                        if (offline[i].size() > 0) {
+                            int p = 0;
+                            for (auto l : offline[i]) {
+                                if (t >= l and t < l + 60) {
+                                    p = 1;
+                                    break;
+                                }
+                            }
+                            if (p == 0)
+                                mp[i]++;
+                        } else
+                            mp[i]++;
+                    }
+                }
+            }
+        }
+        vector<int> ans;
+        for (int i=0;i<n;i++)
+            ans.push_back(max(0,mp[i]));
+        return ans;
+    }
+};
