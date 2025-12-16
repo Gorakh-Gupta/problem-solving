@@ -1,0 +1,50 @@
+class Solution {
+public:
+    bool findSubsetProduct(const vector<int>& arr, int index,
+                           long long current_product, long long target,
+                           vector<int>& subset) {
+        // Base case: if we have processed all elements
+        if (index == arr.size()) {
+            if (current_product == target) {
+                return true; // Target product found
+            }
+            return false;
+        }
+
+        if (current_product > target) 
+            return false;
+
+        subset.push_back(arr[index]);
+        if (findSubsetProduct(arr, index + 1, current_product * arr[index],
+                              target, subset))
+            return true;
+        subset.pop_back();
+
+        return findSubsetProduct(arr, index + 1, current_product, target,
+                                 subset);
+
+    }
+
+    bool checkEqualPartitions(vector<int>& nums, long long target) {
+        vector<int> subset;
+        if (target == 1)
+            return false;
+        long long a = 1;
+        if (findSubsetProduct(nums, 0, 1, target, subset)) {
+            for (int i = 0; i < nums.size(); i++) {
+                int p = 0;
+                for (auto y : subset) {
+                    if (nums[i] == y) {
+                        p = 1;
+                        break;
+                    }
+                }
+                if (p == 0)
+                    a *= nums[i];
+            }
+            if (target == a)
+                return true;
+        }
+        return false;
+    }
+};©leetcode
