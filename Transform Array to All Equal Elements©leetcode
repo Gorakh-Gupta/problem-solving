@@ -1,0 +1,44 @@
+class Solution {
+public:
+    bool canMakeEqual(vector<int>& nums, int k) {
+
+        int cnt = 0;
+        int n = nums.size();
+        int p = 0;
+        vector<int> a = nums;
+        set<int>s;
+        // make all 1
+        for (int i = 0; i < n - 1; i++) {
+            if (nums[i] == -1) {
+                nums[i]*=-1;
+                cnt++;
+                nums[i + 1] *= -1;
+                if (cnt > k) {
+                    p = 1;
+                    break;
+                }
+            }
+            s.insert(nums[i]);
+        }
+        s.insert(nums[n-1]);
+        // cout<<p<<" "<<s.size();
+        if (p == 0 and s.size()==1)
+            return true;
+        else {
+            s.clear();
+            cnt = 0;
+            for (int i = 0; i < n - 1; i++) {
+                if (a[i] == 1) {
+                    a[i]*=-1;
+                    cnt++;
+                    a[i + 1] *= -1;
+                    if (cnt > k)
+                        return false;
+                }
+                s.insert(a[i]);
+            }
+        }
+        s.insert(a[n-1]);
+        return s.size()==1?true:false;
+    }
+};©leetcode
