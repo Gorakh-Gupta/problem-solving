@@ -1,0 +1,43 @@
+class Solution {
+public:
+    long long maxProfit(vector<int>& prices, vector<int>& strategy, int k) {
+
+        int n = prices.size();
+        vector<long long int> a(n, 0), b(n, 0);
+        long long int s = 0;
+        for (int i = 0; i < n; i++) {
+            s += prices[i] * strategy[i];
+            a[i] = s;
+        }
+        s = 0;
+        for (int i = n - 1; i >= 0; i--) {
+            s += prices[i] * strategy[i];
+            b[i] = s;
+        }
+        int j = 0;
+        s = 0;
+        for (int i = k / 2; i < k; i++) {
+            s += prices[i];
+        }
+        // cout << a[n - 1] << " " << b[0] << " " << s << endl;
+        long long int ans = -1e15;
+        if (k < n)
+            ans = max(a[n - 1], s + b[k]);
+        else
+            ans = max(a[n - 1], s);
+        for (int i = k; i < n; i++) {
+            // add left
+            long long int h = 0;
+            // shring one element
+            s -= prices[j + k / 2];
+            // add one element
+            s += prices[i];
+            h = s;
+            if (i < n - 1)
+                h += b[i + 1];
+            ans = max(a[j] + h, ans);
+            j++;
+        }
+        return ans;
+    }
+};
