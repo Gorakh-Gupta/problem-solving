@@ -1,0 +1,50 @@
+class Solution {
+public:
+    int minDeletionSize(vector<string>& strs) {
+        // set<int> s;
+        int n = strs.size();        // Number of rows (strings)
+        int m = strs[0].size();     // Number of columns (characters per string)
+
+        // dp[j] = maximum number of columns we can keep
+        // such that the kept sequence ends at column j
+        vector<int> dp(m, 1);
+
+        int best = 1;               // Stores the maximum columns we can keep
+
+        // Try each column as the ending column
+        for (int j = 0; j < m; j++) 
+        {
+            // Try all previous columns i < j
+            for (int i = 0; i < j; i++) 
+            {
+                bool ok = true;     // Check if column i can come before j
+
+                // Verify the condition for ALL rows
+                for (int r = 0; r < n; r++) 
+                {
+                    // If any row violates non-decreasing order,
+                    // we cannot keep both columns i and j
+                    if (strs[r][i] > strs[r][j]) 
+                    {
+                        ok = false;
+                        break;
+                    }
+                }
+
+                // If column i can precede column j for all rows,
+                // update dp[j] using dp[i]
+                if (ok) 
+                {
+                    dp[j] = max(dp[j], dp[i] + 1);
+                }
+            }
+
+            // Update the best sequence length found so far
+            best = max(best, dp[j]);
+            // cout<<best<<" ";
+        }
+
+        // Minimum deletions = total columns - maximum columns kept
+        return m - best;
+    }
+};
