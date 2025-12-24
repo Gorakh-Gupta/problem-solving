@@ -1,0 +1,30 @@
+class Solution {
+public:
+    long long maxTaxiEarnings(int m, vector<vector<int>>& events) {
+        
+        sort(events.begin(), events.end());
+        int n = events.size();
+        vector<long long> v(n, 0);
+        long long int ans = 0;
+
+        for (int i = n - 1; i >= 0; i--) {
+            auto x = events[i];
+            int index = upper_bound(events.begin(), events.end(), x[1] - 1,
+                                    [](int v, const vector<int>& e) {
+                                        return v < e[0];
+                                    }) -
+                        events.begin();
+
+            long long int value = x[2] + x[1] - x[0];
+            if (index == n ) {
+                if (i == n - 1)
+                    v[i] = value;
+                else
+                    v[i] =  max(value, v[i + 1]);
+            } else
+                v[i] = max(v[i + 1], v[index] + value);
+            ans = max(ans, v[i]);
+        }
+        return ans;
+    }
+};
