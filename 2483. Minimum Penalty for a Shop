@@ -1,0 +1,29 @@
+class Solution {
+public:
+    int bestClosingTime(string s) {
+        int n = s.size();
+        vector<int> a(n + 1, 0);
+        int k = 0;
+        for (int i = 0; i < n; i++) {
+            if (s[i] == 'Y') {
+                k++;
+            }
+            a[i] = k;
+        }
+        a[n] = k;
+        int ans = k;
+        int res = 0;
+        for (int i = 1; i <= n; i++) {
+            int open = a[i - 1];
+            int close = i - open;
+            int openafter = k - a[i];
+            if (s[i] == 'Y')
+                close++;
+            if (close + openafter < ans) {
+                ans = close + openafter;
+                res = i;
+            }
+        }
+        return res;
+    }
+};
