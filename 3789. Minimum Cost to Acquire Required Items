@@ -1,0 +1,22 @@
+class Solution {
+public:
+    long long minimumCost(int cost1, int cost2, int costBoth, int need1,
+                          int need2) {
+        long long int ans = LLONG_MAX;
+        if (cost1 + cost2 >= costBoth) {
+            ans = 0;
+            long long int h = min(need1, need2);
+            ans += h * costBoth;
+            ans += max(0LL, (need1 - h) * cost1);
+            ans += max(0LL, (need2 - h) * cost2);
+        }
+        long long w1 = need1;
+        w1*=cost1 ;
+        long long w2 = need2 ;
+        w2*=cost2;
+        long long k = w1 + w2;
+        long long m = max(need1, need2);
+        long long l =  m * costBoth;
+        return min(min(ans, k), l);
+    }
+};
