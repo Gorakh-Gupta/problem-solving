@@ -1,0 +1,68 @@
+class Solution {
+public:
+    unordered_set<string> visited;
+
+    vector<string>
+    gen_neighbor(const string& node,
+                 unordered_map<string, unordered_set<char>>& mp) {
+        vector<string> res{""};
+        int n = node.size();
+
+        for (int i = 1; i < n; i++) {
+            string key;
+            key.push_back(node[i - 1]);
+            key.push_back(node[i]);
+
+            if (mp.count(key) == 0) {
+                return {};
+            }
+
+            vector<string> newRes;
+            for (const string& a : res) {
+                for (char c : mp[key]) {
+                    newRes.push_back(a + c);
+                    // cout<<a+c<<endl;
+                }
+            }
+            res.swap(newRes);
+        }
+        return res;
+    }
+
+    bool fun(unordered_map<string, unordered_set<char>>&mp, string node) {
+        if (node.size() == 1) {
+            return true;
+        }
+        if (visited.count(node)) {
+            return false;
+        }
+
+        for (const string& nxt : gen_neighbor(node, mp)) {
+            // cout<<nxt<<" ";
+            if (fun(mp, nxt)) {
+                return true;
+            }
+        }
+        // cout<<endl;
+
+        visited.insert(node);
+        return false;
+    }
+
+    bool pyramidTransition(string bottom, vector<string>& allowed) {
+        unordered_map<string, unordered_set<char>> mp;
+
+        for (auto x : allowed) {
+            mp[x.substr(0, 2)].insert(x[2]);
+        }
+
+        // for (auto x : mp) {
+        //     for (auto y:x.second) {
+        //         cout << y << " ";
+        //     }
+        //     cout << endl;
+        // }
+        return fun(mp, bottom);
+        // return false;
+    }
+};
