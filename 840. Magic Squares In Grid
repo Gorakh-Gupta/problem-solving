@@ -1,0 +1,94 @@
+class Solution {
+public:
+    bool fn(int i1, int j1, int i2, int j2, vector<vector<int>>& grid) {
+        set<int> s, st;
+        int k = 0;
+        // all rows
+        for (int i = i1; i <= i2; i++) {
+            for (int j = j1; j <= j2; j++) {
+                k += grid[i][j];
+                s.insert(grid[i][j]);
+            }
+            st.insert(k);
+            k = 0;
+        }
+        if(st.size()>1)return false;
+
+        // all column
+        k = 0;
+
+        for (int j = j1; j <= j2; j++) {
+            for (int i = i1; i <= i2; i++) {
+                k += grid[i][j];
+            }
+            st.insert(k);
+            k = 0;
+        }
+        if(st.size()>1)return false;
+
+
+        // main diagonal
+        k = 0;
+        int i = i1, j = j1;
+        while (i <= i2) {
+            k += grid[i][j];
+            i++;
+            j++;
+        }
+        st.insert(k);
+        if(st.size()>1)return false;
+
+        i = i2, j = j1;
+        // second main diagonal
+        k = 0;
+        while (i >= i1) {
+            k += grid[i][j];
+            i--;
+            j++;
+        }
+
+        st.insert(k);
+        // cout << st.size();
+
+        // check if all values are same
+        if (st.size() == 1 and *st.begin() == 15 && s.size()==9) {
+            int i = 1;
+            for (auto x : s) {
+                if (x != i)
+                    return false;
+                i++;
+            }
+            return true;
+        }
+
+        return false;
+    }
+
+    int numMagicSquaresInside(vector<vector<int>>& grid) {
+        int n = grid.size();
+        int m = grid[0].size();
+        if (n < 3 or m < 3)
+            return 0;
+            /*
+            [[4,3,8,4],
+             [9,5,1,9],
+             [2,7,6,2],
+             [4,3,8,4],
+             [9,5,1,9],
+             [2,7,6,2]]
+             */
+
+
+        int ans = 0, l = 0;
+        for (int i = 0; i < n - 2; i++) {
+            for (int j = 0; j < m - 2; j++) {
+                l++;
+                if (fn(i, j, i + 2, j + 2, grid)){
+                    ans++;
+                }
+            }
+        }
+        cout<<l;
+        return ans;
+    }
+};
