@@ -1,0 +1,48 @@
+class Solution {
+public:
+    vector<vector<string>> wordSquares(vector<string>& words) {
+
+        int n = words.size();
+        vector<string> v;
+        vector<vector<string>> ans;
+        for (int i = 0; i <= n - 4; i++) {
+            v.push_back(words[i]);
+            for (int j = i + 1; j <= n - 3; j++) {
+                v.push_back(words[j]);
+                for (int k = j + 1; k <= n - 2; k++) {
+                    v.push_back(words[k]);
+                    for (int l = k + 1; l < n; l++) {
+                        v.push_back(words[l]);
+                        vector<string>vv=v;
+
+                        sort(vv.begin(), vv.end());
+
+                        do {
+                            string top = vv[0], left = vv[1], right = vv[2],
+                                   bottom = vv[3];
+                            if (top[0] == left[0] && top[3] == right[0] &&
+                                bottom[0] == left[3] && bottom[3] == right[3]) {
+                                ans.push_back(vv);
+                            }
+                        } while (next_permutation(vv.begin(), vv.end()));
+
+                        // v.clear();
+
+                        while (v.size() >= 4) {
+                            v.pop_back();
+                        }
+                    }
+                    while (v.size() >= 3) {
+                        v.pop_back();
+                    }
+                }
+                while (v.size() >= 2) {
+                    v.pop_back();
+                }
+            }
+            v.clear();
+        }
+        sort(ans.begin(),ans.end());
+        return ans;
+    }
+};
