@@ -1,0 +1,27 @@
+
+class Solution {
+public:
+    long long t = 0;
+    long long f(TreeNode* root) {
+        if (!root)
+            return 0;
+        return f(root->left) + f(root->right) + root->val;
+    }
+
+    long long fun(TreeNode* root, long long& ans) {
+        if (!root)
+            return 0;
+        long long r = fun(root->right, ans);
+        long long l = fun(root -> left, ans);
+        long long up = t - r - l - root->val;
+        ans = max(ans, max(l * (r + up + root->val), r * (l + root->val + up)));
+        return l+r+root->val;
+    }
+
+    int maxProduct(TreeNode* root) {
+        t = f(root);
+        long long ans = -1;
+        fun(root, ans);
+        return ans%1000000007;
+    }
+};
