@@ -1,0 +1,36 @@
+class Solution {
+public:
+    double separateSquares(vector<vector<int>>& squares) {
+
+        int minY = INT_MAX, maxY = INT_MIN;
+
+        double area = 0;
+        for (auto x : squares) {
+            int L = x[2], y0 = x[1];
+            minY = min(minY, y0);
+            maxY = max(maxY, y0 + L);
+            area += 1.0 * x[2] * x[2];
+        }
+        area /= 2;
+        double l = minY, r = maxY;
+
+        const double epsilon = 1e-5;
+
+        while (r - l > epsilon) {
+            double m = (l + r) / 2.0;
+
+            double ar = 0;
+            for (auto& x : squares) {
+                double yTop = x[1] + x[2];
+                if (m < yTop) {
+                    ar += min(yTop - m, (double)x[2]) * x[2];
+                }
+            }
+            if (ar > area) {
+                l = m;
+            } else
+                r = m;
+        }
+        return l;
+    }
+};
