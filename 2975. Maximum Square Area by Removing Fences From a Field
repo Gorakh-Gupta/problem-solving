@@ -1,0 +1,29 @@
+class Solution {
+public:
+    int maximizeSquareArea(int m, int n, vector<int>& hBars,
+                           vector<int>& vBars) {
+        hBars.push_back(1);
+        hBars.push_back(m);
+
+        vBars.push_back(1);
+        vBars.push_back(n);
+
+        set<int> s, ss;
+        for (int i = 0; i < hBars.size(); i++) {
+            for (int j = i + 1; j < hBars.size(); j++) {
+                s.insert(abs(hBars[j] - hBars[i]));
+            }
+        }
+
+        long long a = -1;
+
+        for (int i = 0; i < vBars.size(); i++) {
+            for (int j = i + 1; j < vBars.size(); j++) {
+                if (s.count(abs(vBars[j] - vBars[i]))) {
+                    a = max(a, (long long)abs(vBars[j] - vBars[i]));
+                }
+            }
+        }
+        return a < 0 ? a : (a * a) % 1000000007;
+    }
+};
