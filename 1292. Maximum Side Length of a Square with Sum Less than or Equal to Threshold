@@ -1,0 +1,55 @@
+class Solution {
+public:
+    bool fn(int x, int y, int k, vector<vector<int>>& mat, int threshold) {
+        long int sum = 0;
+        for (int j = x; j < x + k; j++) {
+            if (y > 0)
+                sum += mat[j][y + k - 1] - mat[j][y - 1];
+            else
+                sum += mat[j][k - 1];
+
+            if (sum > threshold)
+                return false;
+        }
+        return sum <= threshold;
+    }
+
+    int maxSideLength(vector<vector<int>>& mat, int threshold) {
+        int n = mat.size();
+        int mm = mat[0].size();
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 1; j < mm; j++) {
+                mat[i][j] += mat[i][j - 1];
+            }
+        }
+        int l = 1, r = min(mm, n);
+        int ans = 0;
+
+        while (l <= r) {
+            int m = (l + r) / 2;
+            int sum = 0;
+
+            // checking condition is valid or not
+
+            for (int i = 0; i <= n - m; i++) {
+                for (int j = 0; j <= mm - m; j++) {
+                    bool f = fn(i, j, m, mat, threshold);
+                    if (f) {
+                        ans = 1;
+                        break;
+                    }
+                }
+                if (ans == 1)
+                    break;
+            }
+
+            if (ans == 1) {
+                ans = m;
+                l = m + 1;
+            } else
+                r = m - 1;
+        }
+        return ans;
+    }
+};
