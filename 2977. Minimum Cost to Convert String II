@@ -1,0 +1,96 @@
+class Solution {
+public:
+    long long minimumCost(string source, string target,
+                          vector<string>& original, vector<string>& changed,
+                          vector<int>& cost) {
+
+        int cnt = 0;
+        unordered_map<string, int> mp;
+        for (int i = 0; i < original.size(); i++) {
+            if (!mp.count(original[i]))
+                mp[original[i]] = cnt++;
+            if (!mp.count(changed[i]))
+                mp[changed[i]] = cnt++;
+        }
+
+        unordered_map<int, vector<pair<string, int>>> patternsByLen;
+
+        for (auto& [s, id] : mp) {
+            patternsByLen[s.size()].push_back({s, id});
+        }
+
+        const long long INF = LLONG_MAX;
+        // int n = 26;
+        vector<vector<long long>> dist(cnt, vector<long long>(cnt, INF));
+
+        for (int i = 0; i < cnt; ++i) {
+            dist[i][i] = 0;
+        }
+
+        for (int i = 0; i < original.size(); ++i) {
+            int n = mp[original[i]];
+            int m = mp[changed[i]];
+            dist[n][m] = min(dist[n][m], (long long)cost[i]);
+        }
+
+        // bellman ford algorithm
+
+        for (int k = 0; k < cnt; ++k) {
+            for (int i = 0; i < cnt; ++i) {
+                for (int j = 0; j < cnt; ++j) {
+                    if (dist[i][k] < INF && dist[k][j] < INF) {
+                        dist[i][j] = min(dist[i][j], dist[i][k] + dist[k][j]);
+                    }
+                }
+            }
+        }
+
+        int n = source.size();
+        vector<long long> dp(n + 1, INF);
+        dp[0] = 0;
+
+        for (int i = 0; i < n; ++i) {
+            if (dp[i] == INF)
+                continue;
+
+            // character match shortcut
+            if (source[i] == target[i]) {
+                dp[i + 1] = min(dp[i + 1], dp[i]);
+            }
+
+            // try only valid pattern lengths
+            for (auto& [len, patterns] : patternsByLen) {
+                if (i + len > n)
+                    continue;
+
+                int srcId = -1, tgtId = -1;
+
+                // find source pattern
+                for (auto& [pat, id] : patterns) {
+                    if (source.compare(i, len, pat) == 0) {
+                        srcId = id;
+                        break;
+                    }
+                }
+                if (srcId == -1)
+                    continue;
+
+                // find target pattern
+                for (auto& [pat, id] : patterns) {
+                    if (target.compare(i, len, pat) == 0) {
+                        tgtId = id;
+                        break;
+                    }
+                }
+                if (tgtId == -1)
+                    continue;
+
+                if (dist[srcId][tgtId] < INF) {
+                    dp[i + len] = min(dp[i + len], dp[i] + dist[srcId][tgtId]);
+                }
+            }
+        }
+
+        return dp[n] < INF ? dp[n] : -1;
+    }
+};
