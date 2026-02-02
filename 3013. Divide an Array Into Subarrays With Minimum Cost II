@@ -1,0 +1,43 @@
+class Solution {
+public:
+    long long minimumCost(vector<int>& nums, int k, int dist) {
+        multiset<int> smallestElements, restElements;
+        long long smallestSum = LLONG_MAX, sumOfSmallestElements = 0;
+
+        for (int i = 1, j = 1; j < nums.size(); j++) {
+            smallestElements.insert(nums[j]);
+            sumOfSmallestElements += nums[j];
+
+            if (smallestElements.size() >= k) {
+                int largest = *smallestElements.rbegin();
+                smallestElements.erase(smallestElements.find(largest));
+                sumOfSmallestElements -= largest;
+                restElements.insert(largest);
+            }
+
+            if (i + dist == j) {
+                smallestSum = min(smallestSum, sumOfSmallestElements);
+
+                auto it = smallestElements.find(nums[i]);
+                if (it != smallestElements.end()) {
+                    sumOfSmallestElements -= *it;
+                    smallestElements.erase(it);
+
+                    if (!restElements.empty()) {
+                        int firstOfRest = *restElements.begin();
+                        restElements.erase(restElements.begin());
+                        smallestElements.insert(firstOfRest);
+                        sumOfSmallestElements += firstOfRest;
+                    }
+                } else {
+                    it = restElements.find(nums[i]);
+                    if (it != restElements.end())
+                        restElements.erase(it);
+                }
+                i++;
+            }
+        }
+
+        return nums[0] + smallestSum;
+    }
+};
