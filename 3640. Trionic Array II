@@ -1,0 +1,33 @@
+class Solution {
+    public long maxSumTrionic(int[] nums) {
+        int len = nums.length;
+        long[] dp0 = new long[len];
+        long[] dp1 = new long[len];
+        long[] dp2 = new long[len];
+        long[] dp3 = new long[len];
+        long valueToSet = -1000000000000000001L; // -> -10^18 -1
+
+        for (int i = 0; i < len; i++)
+            dp0[i] = nums[i];
+        for (int i = 0; i < len; i++)
+            dp1[i] = valueToSet;
+        for (int i = 0; i < len; i++)
+            dp2[i] = valueToSet;
+        for (int i = 0; i < len; i++)
+            dp3[i] = valueToSet;
+        long ans = Long.MIN_VALUE;
+
+        for (int i = 1; i < len; i++) {
+            if (nums[i] > nums[i - 1]) {
+                dp1[i] = Math.max(dp1[i - 1] + nums[i], dp0[i - 1] + nums[i]);
+                dp3[i] = Math.max(dp3[i - 1] + nums[i], dp2[i - 1] + nums[i]);
+                ans = Math.max(ans, dp3[i]);
+            } else if(nums[i] < nums[i-1]) {
+                dp2[i] = Math.max(dp2[i - 1] + nums[i], dp1[i - 1] + nums[i]);
+            }
+        }
+
+        return ans;
+
+    }
+}
