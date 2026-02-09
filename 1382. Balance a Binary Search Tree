@@ -1,0 +1,26 @@
+class Solution {
+
+    public TreeNode fun2(List<Integer> a, int l, int r) {
+        if (l > r)
+            return null;
+        int m = (l + r) / 2;
+        TreeNode t = new TreeNode(a.get(m));
+        t.left = fun2(a, l, m - 1);
+        t.right = fun2(a, m + 1, r);
+        return t;
+    }
+
+    void fun(TreeNode root, List<Integer> a) {
+        if (root == null)
+            return;
+        fun(root.left, a);
+        a.add(root.val);
+        fun(root.right, a);
+    }
+
+    public TreeNode balanceBST(TreeNode root) {
+        List<Integer> a = new ArrayList<>();
+        fun(root, a);
+        return fun2(a, 0, a.size() - 1);
+    }
+}
