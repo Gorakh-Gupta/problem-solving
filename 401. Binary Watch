@@ -1,0 +1,35 @@
+class Solution {
+public:
+    vector<string> readBinaryWatch(int a) {
+        vector<string> ans;
+        if (a == 0) {
+            ans.push_back("0:00");
+            return ans;
+        }
+        if (a > 8)
+            return ans;
+
+        for (int i = 0; i <= min(a, 4); i++) {
+            string g = "";
+            for (int j = 0; j <= 11; j++) {
+                if (__builtin_popcount(j) == i) {
+                    g += to_string(j);
+                    g += ':';
+                    int k = a - i;
+                    for (int l = 0; l < 60; l++) {
+                        string m = g;
+                        if (__builtin_popcount(l) == k) {
+                            if (l < 10)
+                                m += '0';
+                            m += to_string(l);
+                            ans.push_back(m);
+                        }
+                    }
+                }
+                g = "";
+            }
+        }
+
+        return ans;
+    }
+};
