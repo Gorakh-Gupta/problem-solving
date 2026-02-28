@@ -1,0 +1,22 @@
+class Solution {
+public:
+    int concatenatedBinary(int n) {
+        long long k = 1;
+        long long md = 1e9 + 7;
+        long long ans = 0;
+        for (int i = n; i >= 1; i--) {
+            int l = i;
+            while (l > 0) {
+                int r = l % 2;
+                if (r == 1) {
+                    ans += k;
+                    ans %= md;
+                }
+                l /= 2;
+                k *= 2;
+                k %= md;
+            }
+        }
+        return ans % md;
+    }
+};
