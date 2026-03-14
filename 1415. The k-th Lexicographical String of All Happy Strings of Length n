@@ -1,0 +1,27 @@
+class Solution {
+    List<String> happyStrings = new ArrayList<>();
+
+    void fun(int n, String s) {
+        if (s.length() == n) {
+            happyStrings.add(s);
+            return;
+        }
+
+        for (char c = 'a'; c <= 'c'; c++) {
+            if (s.length() > 0 && s.charAt(s.length() - 1) == c)
+                continue;
+            fun(n, s + c);
+        }
+
+    }
+
+    public String getHappyString(int n, int k) {
+        String ans = "";
+        fun(n, ans);
+        if (happyStrings.size() < k)
+            return "";
+        else
+            return happyStrings.get(k - 1);
+
+    }
+}
