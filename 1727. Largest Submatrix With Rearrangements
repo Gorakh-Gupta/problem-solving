@@ -1,0 +1,36 @@
+class Solution {
+    private static void reverse(int[] arr) {
+        int i = 0, j = arr.length - 1;
+
+        while (i < j) {
+            int temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
+            i++;
+            j--;
+        }
+    }
+
+    public int largestSubmatrix(int[][] ma) {
+        int n = ma.length, m = ma[0].length;
+        int ans = 0;
+        for (int i = 1; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                if (ma[i][j] != 0) {
+                    ma[i][j] += ma[i - 1][j];
+                }
+            }
+        }
+
+        for (int i = 0; i < n; i++) {
+            Arrays.sort(ma[i]);
+            reverse(ma[i]);
+            for (int j = 0; j < m; j++) {
+                ans = Math.max(ans, (j + 1) * ma[i][j]);
+            }
+        }
+
+        return ans;
+
+    }
+}
