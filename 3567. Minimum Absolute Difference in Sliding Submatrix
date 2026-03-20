@@ -1,0 +1,60 @@
+class Solution {
+    public int[][] minAbsDiff(int[][] grid, int k) {
+        int m = grid.length, n = grid[0].length;
+        int[][] ans = new int[m - k + 1][n - k + 1];
+
+        for (int i = 0; i + k <= m; i++) {
+            TreeMap<Integer, Integer> ms = new TreeMap<>();
+
+            // initialize first window
+            for (int x = i; x < i + k; x++) {
+                for (int y = 0; y < k; y++) {
+                    ms.put(grid[x][y], ms.getOrDefault(grid[x][y], 0) + 1);
+                }
+            }
+
+            for (int j = 0; j + k <= n; j++) {
+
+                int best = Integer.MAX_VALUE;
+
+                Iterator<Integer> it = ms.keySet().iterator();
+
+                Integer prev = null;
+
+                for (int val : ms.keySet()) {
+
+                    if (prev != null) {
+                        int diff = val - prev;
+
+                        if (diff > 0) { // distinct values only
+                            best = Math.min(best, diff);
+                        }
+                    }
+
+                    prev = val;
+                }
+
+                ans[i][j] = best == Integer.MAX_VALUE ? 0 : best;
+
+                // slide window right
+                if (j + k < n) {
+                    for (int x = i; x < i + k; x++) {
+
+                        // remove one occurrence of grid[x][j]
+                        int valRemove = grid[x][j];
+                        if (ms.get(valRemove) == 1) {
+                            ms.remove(valRemove);
+                        } else {
+                            ms.put(valRemove, ms.get(valRemove) - 1);
+                        }
+
+                        // insert grid[x][j + k]
+                        int valAdd = grid[x][j + k];
+                        ms.put(valAdd, ms.getOrDefault(valAdd, 0) + 1);
+                    }
+                }
+            }
+        }
+        return ans;
+    }
+}
