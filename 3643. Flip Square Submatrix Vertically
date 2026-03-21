@@ -1,0 +1,18 @@
+class Solution {
+    public int[][] reverseSubmatrix(int[][] grid, int x, int y, int k) {
+        int len = grid.length;
+        int[][] ans = grid;
+
+        int xx = k+x-1;
+
+        for (int i = 0, j = x,m=xx; i < k / 2; i++, j++,m--) {
+            for (int l = y; l < y + k; l++) {
+                int t = ans[j][l];
+                ans[j][l] = ans[m][l];
+                ans[m][l] = t;
+            }
+        }
+        return ans;
+
+    }
+}
