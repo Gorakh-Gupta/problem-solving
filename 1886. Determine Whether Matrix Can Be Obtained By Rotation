@@ -1,0 +1,50 @@
+class Solution {
+
+    void rotate90Clockwise(int[][] mat) {
+        // `N × N` matrix
+        int N = mat.length;
+
+        // base case
+        if (N == 0) {
+            return;
+        }
+
+        // Transpose the matrix
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < i; j++) {
+                int t = mat[i][j];
+                mat[i][j] = mat[j][i];
+                mat[j][i] = t;
+                // swap(mat[i][j], mat[j][i]);
+            }
+        }
+
+        // swap columns
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N / 2; j++) {
+                int t = mat[i][j];
+                mat[i][j] = mat[i][N - j - 1];
+                mat[i][N - j - 1] = t;
+            }
+        }
+        return;
+    }
+
+    boolean compare(int[][] mat, int[][] target) {
+        int n = mat.length;
+        for (int i = 0; i < n; i++)
+            for (int j = 0; j < n; j++)
+                if (mat[i][j] != target[i][j])
+                    return false;
+        return true;
+    }
+
+    public boolean findRotation(int[][] mat, int[][] target) {
+        for (int i = 0; i < 4; i++) {
+            if (compare(mat, target) == true)
+                return true;
+            rotate90Clockwise(mat);
+        }
+        return false;
+    }
+}
