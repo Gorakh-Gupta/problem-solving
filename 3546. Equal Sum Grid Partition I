@@ -1,0 +1,47 @@
+class Solution {
+    public boolean canPartitionGrid(int[][] grid) {
+        int n = grid.length, m = grid[0].length;
+
+        long [] rows = new long[n];
+        long [] cols = new long[m];
+        long  s = 0, ss = 0;
+
+        // flatten matrix
+        int idx = 0;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                rows[idx]+= grid[i][j];
+                s += grid[i][j];
+            }
+            idx++;
+        }
+
+        idx=0;
+
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                cols[idx]+= grid[j][i];
+            }
+            idx++;
+        }
+
+        for (int i = 1; i < n; i++) {
+            rows[i] += rows[i - 1];
+        }
+
+        for (int i = 1; i < m; i++) {
+            cols[i] += cols[i - 1];
+        }
+
+        for (int i = 0; i < n; i++) {
+            if (2 * rows[i] == s)
+                return true;
+        }
+        for (int i = 0; i < m; i++) {
+            if (2 * cols[i] == s)
+                return true;
+        }
+        return false;
+
+    }
+}
