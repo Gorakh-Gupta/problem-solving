@@ -1,0 +1,44 @@
+class EventManager {
+public:
+    map<int, set<int>> mp;   // priority -> sorted eventIds
+    unordered_map<int, int> m; // eventId -> priority
+
+    EventManager(vector<vector<int>>& events) {
+        for (auto &e : events) {
+            int id = e[0], p = e[1];
+            mp[p].insert(id);
+            m[id] = p;
+        }
+    }
+
+    void updatePriority(int eventId, int newPriority) {
+        int old = m[eventId];
+
+        // remove from old
+        mp[old].erase(eventId);
+        if (mp[old].empty()) mp.erase(old);
+
+        // add to new
+        mp[newPriority].insert(eventId);
+        m[eventId] = newPriority;
+    }
+
+    int pollHighest() {
+        if (mp.empty()) return -1;
+
+        // highest priority
+        auto it = prev(mp.end());
+        int p = it->first;
+
+        // smallest eventId from that priority
+        int e = *it->second.begin();
+
+        // remove it
+        it->second.erase(e);
+        if (it->second.empty()) mp.erase(it);
+
+        m.erase(e);
+
+        return e;
+    }
+};
