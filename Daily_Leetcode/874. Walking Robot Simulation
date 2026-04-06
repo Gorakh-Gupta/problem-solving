@@ -1,0 +1,64 @@
+class Solution {
+public:
+    int robotSim(vector<int>& a, vector<vector<int>>& b) {
+        int xx = 0, yy = 0;
+        int ans = INT_MIN;
+        char d = 'N';
+        unordered_set<string> obs;
+        for (auto x : b) {
+            obs.insert(to_string(x[0]) + "," + to_string(x[1]));
+        }
+
+        for (auto x : a) {
+            if (x == -1) {
+                if (d == 'N')
+                    d = 'E';
+                else if (d == 'E')
+                    d = 'S';
+                else if (d == 'S')
+                    d = 'W';
+                else
+                    d = 'N';
+
+            } else if (x == -2) {
+                if (d == 'N')
+                    d = 'W';
+                else if (d == 'W')
+                    d = 'S';
+                else if (d == 'S')
+                    d = 'E';
+                else
+                    d = 'N';
+            } else {
+                if (d == 'N') {
+                    for (int j = 0; j < x; j++) {
+                        if (obs.count(to_string(xx) + "," + to_string(yy + 1)))
+                            break;
+                        yy++;
+                    }
+                } else if (d == 'S') {
+                    for (int j = 0; j < x; j++) {
+                        if (obs.count(to_string(xx) + "," + to_string(yy - 1)))
+                            break;
+                        yy--;
+                    }
+                } else if (d == 'W') {
+                    for (int j = 0; j < x; j++) {
+                        if (obs.count(to_string(xx - 1) + "," + to_string(yy)))
+                            break;
+                        xx--;
+                    }
+                } else if (d == 'E') {
+                    for (int j = 0; j < x; j++) {
+                        if (obs.count(to_string(xx + 1) + "," + to_string(yy)))
+                            break;
+                        xx++;
+                    }
+                }
+            }
+
+            ans = max(xx * xx + yy * yy, ans);
+        }
+        return ans;
+    }
+};
