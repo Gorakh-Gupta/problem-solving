@@ -1,0 +1,25 @@
+class Solution {
+    public double[] internalAngles(int[] sides) {
+
+        Arrays.sort(sides);
+        int c = sides[0], b = sides[1], a = sides[2];
+        double[] ans = new double[3];
+
+        if (c + b <= a)
+            return new double[] {};
+        double k = a * a + b * b - c * c;
+
+        double cc = Math.acos((1.0 * k) / (2.0 * a * b));
+
+        ans[0] = Math.toDegrees(cc);
+
+        k = a * a - b * b + c * c;
+        cc = Math.acos((1.0 * k) / (2.0 * a * c));
+        ans[1] = Math.toDegrees(cc);
+        
+        ans[2] = 180 - ans[0] - ans[1];
+
+        Arrays.sort(ans);
+        return ans;
+    }
+}
