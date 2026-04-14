@@ -1,0 +1,41 @@
+class Solution {
+    private long calculateMinDistance(
+            int robotIdx,
+            int factoryIdx,
+            List<Integer> robot,
+            List<Integer> factoryPositions,
+            long[][] memo) {
+        if (robot.size() == robotIdx)
+            return 0L;
+        if (factoryIdx == factoryPositions.size())
+            return 10000000000012L;
+        if (memo[robotIdx][factoryIdx] != -1)
+            return memo[robotIdx][factoryIdx];
+        long assign = Math.abs(robot.get(robotIdx) - factoryPositions.get(factoryIdx)) +
+                calculateMinDistance(robotIdx + 1, factoryIdx + 1, robot, factoryPositions, memo);
+
+        long skip = calculateMinDistance(robotIdx, factoryIdx + 1, robot, factoryPositions, memo);
+        memo[robotIdx][factoryIdx] = Math.min(assign, skip);
+        return memo[robotIdx][factoryIdx];
+    }
+
+    public long minimumTotalDistance(List<Integer> robot, int[][] factory) {
+        Collections.sort(robot);
+        Arrays.sort(factory, Comparator.comparingInt(a -> a[0]));
+
+        List<Integer> factoryPositions = new ArrayList<>();
+        for (int i = 0; i < factory.length; i++) {
+            for (int j = 0; j < factory[i][1]; j++) {
+                factoryPositions.add(factory[i][0]);
+            }
+        }
+
+        int robotCount = robot.size();
+        int factoryCount = factoryPositions.size();
+        long[][] memo = new long[robotCount][factoryCount];
+        for (long[] row : memo)
+            Arrays.fill(row, -1);
+        return calculateMinDistance(0, 0, robot, factoryPositions, memo);
+
+    }
+}
