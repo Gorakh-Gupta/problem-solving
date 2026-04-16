@@ -1,0 +1,29 @@
+class Solution {
+public:
+    vector<int> solveQueries(vector<int>& nums, vector<int>& queries) {
+        map<int, vector<int>> mp;
+        for (int i = 0; i < nums.size(); i++) {
+            mp[nums[i]].push_back(i);
+        }
+        int n = nums.size();
+
+        for (auto& [_, pos] : mp) {
+            int x = pos[0];
+            pos.insert(pos.begin(), pos.back() - n);
+            pos.push_back(x + n);
+        }
+
+        int m = queries.size();
+        for (int i = 0; i < m; i++) {
+            int x = nums[queries[i]];
+            if (mp[x].size() == 3) {
+                queries[i] = -1;
+                continue;
+            }
+            int pos = lower_bound(mp[x].begin(), mp[x].end(), queries[i]) -
+                      mp[x].begin();
+            queries[i] = min(mp[x][pos + 1] - mp[x][pos], mp[x][pos] - mp[x][pos - 1]);
+        }
+        return queries;
+    }
+};
